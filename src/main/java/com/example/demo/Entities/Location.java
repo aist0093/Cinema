@@ -1,11 +1,9 @@
 package com.example.demo.Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="location", schema="demo31")
 public class Location {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -13,5 +11,24 @@ public class Location {
     private String district;
     private String name;
 
+    public int getLocationId() {
+        return locationId;
+    }
 
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
