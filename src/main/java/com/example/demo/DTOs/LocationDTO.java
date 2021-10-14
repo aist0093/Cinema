@@ -1,4 +1,4 @@
 package com.example.demo.DTOs;
 
-public interface LocationDTO {
+public class LocationDTO {
 }

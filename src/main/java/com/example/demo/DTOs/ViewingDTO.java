@@ -1,6 +1,5 @@
 package com.example.demo.DTOs;
 
-import com.example.demo.Entities.Movie;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,10 +7,14 @@ import lombok.Setter;
 
 import java.util.Date;
 
-public interface ViewingDTO {
+@EqualsAndHashCode
+@Setter
+@Getter
+@NoArgsConstructor
+public class ViewingDTO {
 
-
-     Movie getMovie();
-     Date getDateTime();
+     int viewingId;
+     int movieId;
+     Date dateTime;
 
 }

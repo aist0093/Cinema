@@ -4,6 +4,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-public interface MovieDTO {
-    Integer getMovieId();
+@EqualsAndHashCode
+@Setter
+@Getter
+@NoArgsConstructor
+public class MovieDTO {
+
+    int movieId;
+
 }

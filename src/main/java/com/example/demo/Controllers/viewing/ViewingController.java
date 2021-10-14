@@ -44,6 +44,10 @@ public class ViewingController{
       return viewingService.setDateTimeByViewingId(dateTime, id);
     }
 
+    @PostMapping("")
+    ViewingDTO createViewing(@PathVariable Integer movie_id, ){
+        return viewingService.create(viewingDTO);
+    }
 
 
 }

@@ -18,8 +18,9 @@ public class ViewingService{
         this.viewingRepository = viewingRepository;
     }
 
-    public ViewingDTO create(ViewingDTO viewingdto) {
-        return viewingRepository.save(viewingdto);
+    public ViewingDTO create(Integer movie_id, Integer auditorium_id, Date date_time, float price) {
+        return viewingRepository.save(new ViewingDTO() {
+        });
     }
 
 
