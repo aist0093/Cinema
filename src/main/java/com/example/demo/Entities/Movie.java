@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Movie {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "movie_id", nullable = false, length = 11)
     private int movieId;
     @Basic

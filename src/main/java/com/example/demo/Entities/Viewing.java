@@ -16,7 +16,7 @@ import java.util.Date;
 public class Viewing {
     @Id
 
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewingId;
     @ManyToOne
