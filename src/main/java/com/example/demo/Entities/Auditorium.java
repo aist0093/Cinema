@@ -19,6 +19,8 @@ public class Auditorium {
     private int auditoriumId;                                          //creating tables
     @Basic
     @Column(name ="location_id", nullable = false, length = 11)
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "location_id")
     private int locationId;
     @Basic
     @Column(name = "name", nullable = false, length = 2)

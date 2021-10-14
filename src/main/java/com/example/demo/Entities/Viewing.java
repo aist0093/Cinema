@@ -1,6 +1,7 @@
 package com.example.demo.Entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,10 +11,10 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name="viewing", schema="demo31")
 public class Viewing {
     @Id
-
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "viewingId", nullable = false, length = 11)
     private int viewingId;
