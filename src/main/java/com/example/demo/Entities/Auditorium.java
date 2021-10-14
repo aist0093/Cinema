@@ -10,7 +10,6 @@ public class Auditorium {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name = "auditorium_id")
     private int auditoriumId;
     private int locationId;
     private String name;
