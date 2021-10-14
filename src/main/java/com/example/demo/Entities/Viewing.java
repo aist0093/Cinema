@@ -1,17 +1,33 @@
 package com.example.demo.Entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
+
+@Getter
+@Setter
 @Entity
 @Table(name="viewing", schema="demo31")
 public class Viewing {
     @Id
+
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "viewingId", nullable = false, length = 11)
     private int viewingId;
+    @Basic
+    @Column(name = "auditoriumId", nullable = false, length = 11)
     private int auditoriumId;
+    @Basic
+    @Column(name = "movieId", nullable = false, length = 11)
     private int movieId;
+    @Basic
+    @Column(name = "dateTime",nullable = false)
     private Date dateTime;
+    @Basic
+    @Column(name = "price", nullable = false)
     private float price;
 
     public int getViewingId() {
