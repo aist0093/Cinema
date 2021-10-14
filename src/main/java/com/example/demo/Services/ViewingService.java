@@ -37,6 +37,7 @@ public class ViewingService implements IViewingService{
     public Viewing setDateTimeByViewingId(Date dateTime, int viewingId){
         Viewing v = viewingRepository.findViewingByViewingId(viewingId);
         v.setDateTime(dateTime);
+        return ;
     }
 
     @Override

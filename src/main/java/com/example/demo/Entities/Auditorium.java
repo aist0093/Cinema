@@ -17,8 +17,6 @@ public class Auditorium {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "auditorium_id", nullable = false, length = 11)      //declaring length of tables
     private int auditoriumId;                                          //creating tables
-
-    @Column(name ="location_id", nullable = false, length = 11)
     @ManyToOne
     @JoinColumn(name ="location_id", referencedColumnName = "location_id")
     private Location locationId;
