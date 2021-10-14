@@ -18,8 +18,6 @@ public class ViewingService{
         this.viewingRepository = viewingRepository;
     }
 
-
-
     public ViewingDTO create(ViewingDTO viewingdto) {
         return viewingRepository.save(viewingdto);
     }
@@ -30,13 +28,11 @@ public class ViewingService{
         viewingRepository.deleteById(viewingId);
     }
 
-
     public ViewingDTO setDateTimeByViewingId(Date dateTime, int viewingId){
         ViewingDTO v = viewingRepository.findViewingByViewingId(viewingId);
         v.setDateTime(dateTime);
         return v;
     }
-
 
     public Viewing getById(int viewingId) {
         return null;

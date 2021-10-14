@@ -7,17 +7,9 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@EqualsAndHashCode
-@Setter
-@Getter
-@NoArgsConstructor
-public class ViewingDTO {
+public interface ViewingDTO {
 
-     int movieId;
-     Date dateTime;
+     Integer getMovieId();
+     Date getDateTime();
 
-     public ViewingDTO(int movieId, Date dateTime) {
-          this.movieId = movieId;
-          this.dateTime = dateTime;
-     }
 }
