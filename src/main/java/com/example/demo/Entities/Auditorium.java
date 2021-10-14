@@ -19,7 +19,7 @@ public class Auditorium {
     private int auditoriumId;                                          //creating tables
     @ManyToOne
     @JoinColumn(name ="location_id", referencedColumnName = "location_id")
-    private Location locationId;
+    private Location location;
     @Basic
     @Column(name = "name", nullable = false, length = 2)
     private String name;
@@ -34,12 +34,12 @@ public class Auditorium {
         return auditoriumId;
     }
 
-    public Location getLocationId() {
-        return locationId;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocationId(Location locationId) {
-        this.locationId = locationId;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getName() {

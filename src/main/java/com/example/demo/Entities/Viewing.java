@@ -21,10 +21,10 @@ public class Viewing {
     private int viewingId;
     @ManyToOne
     @JoinColumn(name ="auditorium_id", referencedColumnName = "auditorium_id")
-    private Auditorium auditoriumId;
+    private Auditorium auditorium;
     @ManyToOne
     @JoinColumn(name ="movie_id", referencedColumnName = "movie_id")
-    private Movie movieId;
+    private Movie movie;
     @Basic
     @Column(name = "date_time",nullable = false)
     private Date dateTime;
@@ -36,20 +36,20 @@ public class Viewing {
         return viewingId;
     }
 
-    public Auditorium getAuditoriumId() {
-        return auditoriumId;
+    public Auditorium getAuditorium() {
+        return auditorium;
     }
 
-    public void setAuditoriumId(Auditorium auditoriumId) {
-        this.auditoriumId = auditoriumId;
+    public void setAuditorium(Auditorium auditorium) {
+        this.auditorium = auditorium;
     }
 
-    public Movie getMovieId() {
-        return movieId;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public void setMovieId(Movie movieId) {
-        this.movieId = movieId;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     public Date getDateTime() {
