@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/api/viewings")
+@RequestMapping("/viewings")
 public class ViewingController{
     ModelMapper modelMapper;
     private ViewingService viewingService;

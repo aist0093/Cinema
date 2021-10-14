@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 @Service
 public class MovieService {
     public static void main(String[] args) throws IOException{
-        fetchMovie("tt0099685");
+//        System.out.println(fetchMovie("tt0099685"));
     }
-    public static ImdbMovie fetchMovie(String id) throws IOException{
+    public ImdbMovie fetchMovie(String id) throws IOException{
         Scanner sc = new Scanner(new URL("https://www.imdb.com/title/" + id + "/").openStream());
         StringBuffer sb = new StringBuffer();
         while(sc.hasNext()) {

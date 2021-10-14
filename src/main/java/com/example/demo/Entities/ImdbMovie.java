@@ -15,6 +15,17 @@ public class ImdbMovie {
         this.actors = actors;
     }
 
+    @Override
+    public String toString() {
+        return "ImdbMovie{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", rating='" + rating + '\'' +
+                ", duration='" + duration + '\'' +
+                ", actors='" + actors + '\'' +
+                '}';
+    }
+
     public String getTitle() {
         return title;
     }
