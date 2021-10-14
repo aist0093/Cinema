@@ -45,8 +45,8 @@ public class ViewingController{
     }
 
     @PostMapping("")
-    ViewingDTO createViewing(@PathVariable Integer movie_id, ){
-        return viewingService.create(viewingDTO);
+    ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price){
+        return viewingService.create(movie_id, auditorium_id,date_time,price);
     }
 
 

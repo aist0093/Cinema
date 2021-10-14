@@ -19,7 +19,7 @@ public class ViewingService{
     }
 
     public ViewingDTO create(Integer movie_id, Integer auditorium_id, Date date_time, float price) {
-        return viewingRepository.save(new ViewingDTO() {
+        return viewingRepository.save(new ViewingDTO(movie_id, auditorium_id, date_time, price) {
         });
     }
 
