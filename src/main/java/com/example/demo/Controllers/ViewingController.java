@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/viewing")
 public class ViewingController {
     ModelMapper modelMapper;
     ViewingService viewingService;
@@ -35,32 +35,38 @@ public class ViewingController {
 
 
     //delete viewing by id
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/viewing/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     ViewingDTO deleteViewing(@PathVariable int id) {
         viewingService.delete(id);
         return null;
     }
     //update viewing date and time
-    @PatchMapping("/{id}")
-    ViewingDTO updateDateAndTime(@PathVariable Date dateTime, int id) {
+    @PatchMapping("/viewing/{id}")
+    ViewingDTO updateDateAndTime(@RequestBody Date dateTime, @PathVariable int id) {
         return viewingService.setDateTimeByViewingId(dateTime, id);
     }
     //create a viewing
-    @PostMapping("")
-    ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price) {
+    @PostMapping("/viewing")
+    ViewingDTO createViewing(@RequestBody Integer movie_id, @RequestBody Integer auditorium_id, @RequestBody String date_time, @RequestBody Float price) {
         return viewingService.create(auditorium_id, movie_id, date_time, price);
     }
     //WORKS
     //get viewing by id
-    @GetMapping("/{id}")
+    @GetMapping("/viewing/{id}")
     ViewingDTO getViewingById(@PathVariable int id) {
         return viewingService.getById(id);
     }
 
-//    @GetMapping("/location/{id}?date={date} ")
-//    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, Date date){
-//        return
-//    }
+    @GetMapping("/viewings/location/{id}?date={date}")
+    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, @PathVariable String date){
+        return viewingService.getByLocationAndTimeframe(id, date, date);
+    }
+
+    @GetMapping("/viewings/location/{id}")
+    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, @RequestParam String start_date, @RequestParam String end_date) {
+        System.out.println("Hello :)");
+        return viewingService.getByLocationAndTimeframe(id, start_date, end_date);
+    }
 
 }

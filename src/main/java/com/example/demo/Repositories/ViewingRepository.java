@@ -1,6 +1,7 @@
 package com.example.demo.Repositories;
 
 import com.example.demo.DTOs.ViewingDTO;
+import com.example.demo.Entities.Location;
 import com.example.demo.Entities.Viewing;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
@@ -16,6 +17,5 @@ public interface ViewingRepository extends JpaRepository<Viewing, Integer> {
 //    Viewing findViewingByMovieId(Integer movieId);
     Viewing findViewingByViewingId(Integer viewingId);
 //    Viewing setDateTimeByViewingId(Date dateTime, Integer viewingId);
-
-
+    List<Viewing> findViewingsByAuditorium_LocationContainingAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThanEqual(Location location, Date dateTimeOne, Date dateTimeTwo);
 }
