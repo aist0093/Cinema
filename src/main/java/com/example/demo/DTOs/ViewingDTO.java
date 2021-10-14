@@ -1,5 +1,9 @@
 package com.example.demo.DTOs;
 
+import com.example.demo.Entities.Auditorium;
+import com.example.demo.Entities.Movie;
+import com.example.demo.Entities.Viewing;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,22 +11,29 @@ import lombok.Setter;
 
 import java.util.Date;
 
-@EqualsAndHashCode
+@NoArgsConstructor
 @Setter
 @Getter
-@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ViewingDTO {
 
      int viewingId;
-     int auditoriumId;
-     int movieId;
+     Auditorium auditoriumId;
+     Movie movieId;
      Date dateTime;
      float price;
 
-     public ViewingDTO(Integer movie_id, Integer auditorium_id, Date date_time, float price) {
-          this.movieId = movie_id;
-          this.auditoriumId = auditorium_id;
-          this.dateTime = date_time;
+     public ViewingDTO(Auditorium auditoriumId, Movie movieId, Date dateTime, float price) {
+          this.auditoriumId = auditoriumId;
+          this.movieId = movieId;
+          this.dateTime = dateTime;
           this.price = price;
+     }
+
+     public ViewingDTO(Viewing viewing){
+          this.auditoriumId = viewing.getAuditorium();
+          this.movieId = viewing.getMovie();
+          this.dateTime = viewing.getDateTime();
+          this.price = viewing.getPrice();
      }
 }
