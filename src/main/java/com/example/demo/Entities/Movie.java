@@ -23,6 +23,12 @@ public class Movie {
     @Column(name = "age_req", nullable = false, length = 2)
     private int ageRequirement;
 
+    public Movie(int movieId, String imdbId, int ageRequirement) {
+        this.movieId = movieId;
+        this.imdbId = imdbId;
+        this.ageRequirement = ageRequirement;
+    }
+
     public int getMovieId() {
         return movieId;
     }
@@ -41,5 +47,14 @@ public class Movie {
 
     public void setAgeRequirement(int ageRequirement) {
         this.ageRequirement = ageRequirement;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "movieId=" + movieId +
+                ", imdbId='" + imdbId + '\'' +
+                ", ageRequirement=" + ageRequirement +
+                '}';
     }
 }

@@ -25,6 +25,13 @@ public class Seat {
     @Column(name = "seat_num", nullable = false, length = 2)
     private int seatNumber;
 
+    public Seat(int seatId, int viewingId, int row, int seatNumber) {
+        this.seatId = seatId;
+        this.viewingId = viewingId;
+        this.row = row;
+        this.seatNumber = seatNumber;
+    }
+
     public int getSeatId() {
         return seatId;
     }
@@ -51,5 +58,15 @@ public class Seat {
 
     public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Seat{" +
+                "seatId=" + seatId +
+                ", viewingId=" + viewingId +
+                ", row=" + row +
+                ", seatNumber=" + seatNumber +
+                '}';
     }
 }
