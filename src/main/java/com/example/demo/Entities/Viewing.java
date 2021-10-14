@@ -15,16 +15,16 @@ public class Viewing {
     @Id
 
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "viewingId", nullable = false, length = 11)
+    @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewingId;
     @Basic
-    @Column(name = "auditoriumId", nullable = false, length = 11)
+    @Column(name = "auditorium_id", nullable = false, length = 11)
     private int auditoriumId;
     @Basic
-    @Column(name = "movieId", nullable = false, length = 11)
+    @Column(name = "movie_id", nullable = false, length = 11)
     private int movieId;
     @Basic
-    @Column(name = "dateTime",nullable = false)
+    @Column(name = "date_time",nullable = false)
     private Date dateTime;
     @Basic
     @Column(name = "price", nullable = false)
