@@ -14,13 +14,13 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "movieId", nullable = false, length = 11)
+    @Column(name = "movie_id", nullable = false, length = 11)
     private int movieId;
     @Basic
-    @Column(name = "imdbId", nullable = false, length = 10)
+    @Column(name = "imdb_id", nullable = false, length = 10)
     private String imdbId;
     @Basic
-    @Column(name = "ageRequirement", nullable = false, length = 2)
+    @Column(name = "age_req", nullable = false, length = 2)
     private int ageRequirement;
 
     public int getMovieId() {

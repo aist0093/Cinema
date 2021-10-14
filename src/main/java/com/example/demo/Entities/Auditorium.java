@@ -15,19 +15,19 @@ public class Auditorium {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "auditoriumId", nullable = false, length = 11)      //declaring length of tables
+    @Column(name = "auditorium_id", nullable = false, length = 11)      //declaring length of tables
     private int auditoriumId;                                          //creating tables
     @Basic
-    @Column(name ="locationId", nullable = false, length = 11)
+    @Column(name ="location_id", nullable = false, length = 11)
     private int locationId;
     @Basic
     @Column(name = "name", nullable = false, length = 2)
     private String name;
     @Basic
-    @Column(name = "rowNumber", nullable = false, length = 2)
+    @Column(name = "row_num", nullable = false, length = 2)
     private int rowNumber;
     @Basic
-    @Column(name = "aisleNumber", nullable = false, length = 2)
+    @Column(name = "aisle_num", nullable = false, length = 2)
     private int aisleNumber;
 
     public int getAuditoriumId() {

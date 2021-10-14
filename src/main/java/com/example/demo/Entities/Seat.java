@@ -15,7 +15,7 @@ public class Seat {
     @Column(name="seat_id", nullable = false, length = 11)
     private int seatId;
     @Basic
-    @Column(name ="viewing", nullable = false, length = 11)
+    @Column(name ="viewing_id", nullable = false, length = 11)
     private int viewingId;
     @Basic
     @Column(name = "row", nullable = false, length = 2)
