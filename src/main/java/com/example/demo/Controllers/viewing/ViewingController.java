@@ -34,9 +34,8 @@ public class ViewingController{
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    ViewingDTO deleteViewing(@PathVariable int id){
+    void deleteViewing(@PathVariable int id){
         viewingService.delete(id);
-        return null;
     }
 
     @PatchMapping("/{id}")
@@ -45,7 +44,7 @@ public class ViewingController{
     }
 
     @PostMapping("")
-    ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price){
+    ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, Float price){
         return viewingService.create(auditorium_id, movie_id, date_time, price);
     }
 
