@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Date;
 
 @RestController
@@ -47,6 +48,10 @@ public class ViewingController{
     @PostMapping("")
     ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price){
         return viewingService.create(movie_id, auditorium_id,date_time,price);
+    }
+    @GetMapping("/{id}")
+    ViewingDTO ViewingDTO (@PathVariable int id) throws IOException {
+        return viewingService.getById(id);
     }
 
 

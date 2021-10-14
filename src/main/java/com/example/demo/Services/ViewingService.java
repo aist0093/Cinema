@@ -23,7 +23,6 @@ public class ViewingService{
         });
     }
 
-
     public void delete(int viewingId) {
         if (!viewingRepository.existsById(viewingId)) System.out.println("viewing doesn't exist");
         viewingRepository.deleteById(viewingId);
@@ -35,7 +34,7 @@ public class ViewingService{
         return v;
     }
 
-    public Viewing getById(int viewingId) {
-        return null;
+    public ViewingDTO getById(int viewingId) {
+        return viewingRepository.findViewingByViewingId(viewingId);
     }
 }
