@@ -1,12 +1,14 @@
 package com.example.demo.Entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 @Setter
 @Getter
 @Entity
+@NoArgsConstructor
 @Table(name="location", schema="demo31")
 public class Location {
     @Id

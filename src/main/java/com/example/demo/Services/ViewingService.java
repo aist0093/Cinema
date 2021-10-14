@@ -1,6 +1,5 @@
 package com.example.demo.Services;
 
-import com.example.demo.DTOs.ViewingDTO;
 import com.example.demo.Entities.Viewing;
 import com.example.demo.Repositories.ViewingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class ViewingService{
+public class ViewingService implements IViewingService{
 
     private final ViewingRepository viewingRepository;
 
@@ -19,25 +18,28 @@ public class ViewingService{
     }
 
 
-
-    public ViewingDTO create(ViewingDTO viewingdto) {
-        return viewingRepository.save(viewingdto);
+    @Override
+    public void create(Viewing viewing) {
+        viewingRepository.save(new Viewing());
     }
 
-
+    @Override
     public void delete(int viewingId) {
-        if (!viewingRepository.existsById(viewingId)) return;
+        if (!viewingRepository.existsById(viewingId)) System.out.println("viewing doesn't exist");
         viewingRepository.deleteById(viewingId);
     }
 
-
-    public ViewingDTO setDateTimeByViewingId(Date dateTime, int viewingId){
-        ViewingDTO v = viewingRepository.findViewingByViewingId(viewingId);
+//    @Override
+//    public void updateDate(int viewingId) {
+//        viewingRepository.findViewingByViewingId(viewingId).setDateTime(Date);
+//    }
+    @Override
+    public Viewing setDateTimeByViewingId(Date dateTime, int viewingId){
+        Viewing v = viewingRepository.findViewingByViewingId(viewingId);
         v.setDateTime(dateTime);
-        return v;
     }
 
-
+    @Override
     public Viewing getById(int viewingId) {
         return null;
     }

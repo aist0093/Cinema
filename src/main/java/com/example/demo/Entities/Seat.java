@@ -1,6 +1,7 @@
 package com.example.demo.Entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,7 +15,6 @@ public class Seat {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="seat_id", nullable = false, length = 11)
     private int seatId;
-    @Column(name ="viewing_id", nullable = false, length = 11)
     @ManyToOne
     @JoinColumn(name ="viewing_id", referencedColumnName = "viewing_id")
     private Viewing viewingId;
