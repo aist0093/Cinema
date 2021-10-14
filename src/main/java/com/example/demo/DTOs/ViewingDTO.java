@@ -31,7 +31,6 @@ public class ViewingDTO {
 
     public ViewingDTO(Viewing viewing) {
         this.auditoriumId = viewing.getAuditorium();
-        this.movieId = viewing.getMovie();
         this.dateTime = viewing.getDateTime();
         this.price = viewing.getPrice();
     }

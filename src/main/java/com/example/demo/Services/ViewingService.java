@@ -53,10 +53,19 @@ public class ViewingService {
         viewingRepository.deleteById(viewingId);
     }
 
-    public ViewingDTO setDateTimeByViewingId(Date dateTime, int viewingId) {
-        ViewingDTO v = new ViewingDTO(viewingRepository.findViewingByViewingId(viewingId));
-        v.setDateTime(dateTime);
-        return v;
+    public ViewingDTO setDateTimeByViewingId( String dateTime, int viewingId) {
+
+        System.out.println(dateTime);
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateTime);
+            Viewing v = viewingRepository.findViewingByViewingId(viewingId);
+            v.setDateTime(date);
+            return new ViewingDTO(viewingRepository.save(v));
+         }
+        catch(ParseException ex){
+            System.out.println("Failed to parse!");
+        }
+        return null;
     }
 
     public ViewingDTO getById(int viewingId) {

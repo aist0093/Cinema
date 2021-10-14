@@ -3,14 +3,15 @@ package com.example.demo.Controllers;
 import com.example.demo.DTOs.ViewingDTO;
 import com.example.demo.Entities.Viewing;
 import com.example.demo.Services.ViewingService;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
-import java.util.Date;
 import java.util.List;
+
 
 @RestController
 public class ViewingController {
@@ -43,8 +44,8 @@ public class ViewingController {
     }
     //update viewing date and time
     @PatchMapping("/viewing/{id}")
-    ViewingDTO updateDateAndTime(@RequestBody Date dateTime, @PathVariable int id) {
-        return viewingService.setDateTimeByViewingId(dateTime, id);
+    ViewingDTO updateDateAndTime(@RequestBody ObjectNode body, @PathVariable int id) {
+        return viewingService.setDateTimeByViewingId(body.get("dateTime").asText(), id);
     }
     //create a viewing
     @PostMapping("/viewing")

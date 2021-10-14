@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Setter
@@ -17,8 +19,8 @@ public class Auditorium {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auditorium_id", nullable = false, length = 11)      //declaring length of tables
     private int auditoriumId;                                          //creating tables
-    @ManyToOne
-    @JoinColumn(name = "location_id", referencedColumnName = "location_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id")
     private Location location;
     @Basic
     @Column(name = "name", nullable = false, length = 2)
@@ -29,6 +31,7 @@ public class Auditorium {
     @Basic
     @Column(name = "aisle_num", nullable = false, length = 2)
     private int aisleNumber;
+
 
     public int getAuditoriumId() {
         return auditoriumId;

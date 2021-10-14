@@ -14,8 +14,8 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seat_id", nullable = false, length = 11)
     private int seatId;
-    @ManyToOne
-    @JoinColumn(name = "viewing_id", referencedColumnName = "viewing_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "viewing_id")
     private Viewing viewingId;
     @Basic
     @Column(name = "row", nullable = false, length = 2)

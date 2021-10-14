@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -15,15 +16,14 @@ import java.util.Date;
 @Table(name = "viewing", schema = "demo31")
 public class Viewing {
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewingId;
-    @ManyToOne
-    @JoinColumn(name = "auditorium_id", referencedColumnName = "auditorium_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "auditorium_id")
     private Auditorium auditorium;
-    @ManyToOne
-    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "movie_id")
     private Movie movie;
     @Basic
     @Column(name = "date_time", nullable = false)
@@ -63,8 +63,9 @@ public class Viewing {
         return dateTime;
     }
 
-    public void setDateTime(Date dateTime) {
+    public Viewing setDateTime(Date dateTime) {
         this.dateTime = dateTime;
+        return this;
     }
 
     public float getPrice() {
