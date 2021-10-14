@@ -1,4 +1,4 @@
-package com.example.demo.Controllers.viewing;
+package com.example.demo.Controllers;
 
 import com.example.demo.DTOs.ViewingDTO;
 import com.example.demo.Entities.Viewing;
@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/viewing")
@@ -32,27 +33,33 @@ public class ViewingController {
         return modelMapper.map(viewingDTO, Viewing.class);
     }
 
+
+    //delete viewing by id
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     ViewingDTO deleteViewing(@PathVariable int id) {
         viewingService.delete(id);
         return null;
     }
-
+    //update viewing date and time
     @PatchMapping("/{id}")
     ViewingDTO updateDateAndTime(@PathVariable Date dateTime, int id) {
         return viewingService.setDateTimeByViewingId(dateTime, id);
     }
-
+    //create a viewing
     @PostMapping("")
     ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price) {
         return viewingService.create(auditorium_id, movie_id, date_time, price);
     }
-
+    //get viewing by id
     @GetMapping("/{id}")
-    ViewingDTO getViewing(@PathVariable int id) {
+    ViewingDTO getViewingById(@PathVariable int id) {
         return viewingService.getById(id);
     }
 
+//    @GetMapping("/location/{id}?date={date} ")
+//    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, Date date){
+//        return
+//    }
 
 }

@@ -17,4 +17,5 @@ public interface ViewingRepository extends JpaRepository<Viewing, Integer> {
     Viewing findViewingByViewingId(Integer viewingId);
 //    Viewing setDateTimeByViewingId(Date dateTime, Integer viewingId);
 
+
 }

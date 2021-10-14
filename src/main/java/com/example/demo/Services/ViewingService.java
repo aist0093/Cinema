@@ -45,5 +45,6 @@ public class ViewingService {
 
     public ViewingDTO getById(int viewingId) {
         return new ViewingDTO(viewingRepository.findViewingByViewingId(viewingId));
+
     }
 }

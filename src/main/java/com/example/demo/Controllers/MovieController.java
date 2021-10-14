@@ -1,4 +1,4 @@
-package com.example.demo.Controllers.movie;
+package com.example.demo.Controllers;
 
 import com.example.demo.Services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
