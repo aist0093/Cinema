@@ -64,6 +64,13 @@ public class Viewing {
         return price;
     }
 
+    public Viewing(Auditorium auditorium, Movie movie, Date dateTime, float price) {
+        this.auditorium = auditorium;
+        this.movie = movie;
+        this.dateTime = dateTime;
+        this.price = price;
+    }
+
     public void setPrice(float price) {
         this.price = price;
     }

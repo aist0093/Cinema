@@ -28,8 +28,8 @@ public class ViewingController{
     }
 
     @Autowired
-    public ViewingController(ModelMapper modelMapper, ViewingService viewingService){
-        this.modelMapper = modelMapper;
+    public ViewingController(ViewingService viewingService){
+//        this.modelMapper = modelMapper;
         this.viewingService = viewingService;
     }
 
@@ -47,7 +47,7 @@ public class ViewingController{
 
     @PostMapping("")
     ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price){
-        return viewingService.create(movie_id, auditorium_id,date_time,price);
+        return viewingService.create(auditorium_id, movie_id, date_time, price);
     }
     @GetMapping("/{id}")
     ViewingDTO ViewingDTO (@PathVariable int id) throws IOException {
