@@ -14,9 +14,10 @@ public class Seat {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="seat_id", nullable = false, length = 11)
     private int seatId;
-    @Basic
     @Column(name ="viewing_id", nullable = false, length = 11)
-    private int viewingId;
+    @ManyToOne
+    @JoinColumn(name ="viewing_id", referencedColumnName = "viewing_id")
+    private Viewing viewingId;
     @Basic
     @Column(name = "row", nullable = false, length = 2)
     private int row;
@@ -28,11 +29,11 @@ public class Seat {
         return seatId;
     }
 
-    public int getViewingId() {
+    public Viewing getViewingId() {
         return viewingId;
     }
 
-    public void setViewingId(int viewingId) {
+    public void setViewingId(Viewing viewingId) {
         this.viewingId = viewingId;
     }
 

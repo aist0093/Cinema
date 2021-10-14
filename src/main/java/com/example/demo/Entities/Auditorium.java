@@ -17,9 +17,11 @@ public class Auditorium {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "auditorium_id", nullable = false, length = 11)      //declaring length of tables
     private int auditoriumId;                                          //creating tables
-    @Basic
+
     @Column(name ="location_id", nullable = false, length = 11)
-    private int locationId;
+    @ManyToOne
+    @JoinColumn(name ="location_id", referencedColumnName = "location_id")
+    private Location locationId;
     @Basic
     @Column(name = "name", nullable = false, length = 2)
     private String name;
@@ -34,11 +36,11 @@ public class Auditorium {
         return auditoriumId;
     }
 
-    public int getLocationId() {
+    public Location getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(int locationId) {
+    public void setLocationId(Location locationId) {
         this.locationId = locationId;
     }
 

@@ -17,12 +17,14 @@ public class Viewing {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "viewingId", nullable = false, length = 11)
     private int viewingId;
-    @Basic
     @Column(name = "auditoriumId", nullable = false, length = 11)
-    private int auditoriumId;
-    @Basic
+    @ManyToOne
+    @JoinColumn(name ="auditorium_id", referencedColumnName = "auditorium_id")
+    private Auditorium auditoriumId;
     @Column(name = "movieId", nullable = false, length = 11)
-    private int movieId;
+    @ManyToOne
+    @JoinColumn(name ="movie_id", referencedColumnName = "movie_id")
+    private Movie movieId;
     @Basic
     @Column(name = "dateTime",nullable = false)
     private Date dateTime;
@@ -34,19 +36,19 @@ public class Viewing {
         return viewingId;
     }
 
-    public int getAuditoriumId() {
+    public Auditorium getAuditoriumId() {
         return auditoriumId;
     }
 
-    public void setAuditoriumId(int auditoriumId) {
+    public void setAuditoriumId(Auditorium auditoriumId) {
         this.auditoriumId = auditoriumId;
     }
 
-    public int getMovieId() {
+    public Movie getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(int movieId) {
+    public void setMovieId(Movie movieId) {
         this.movieId = movieId;
     }
 
