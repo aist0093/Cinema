@@ -19,6 +19,8 @@ public class Auditorium {
     private int auditoriumId;                                          //creating tables
     @Basic
     @Column(name ="location_id", nullable = false, length = 11)
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "location_id")
     private int locationId;
     @Basic
     @Column(name = "name", nullable = false, length = 2)
@@ -29,6 +31,14 @@ public class Auditorium {
     @Basic
     @Column(name = "aisle_num", nullable = false, length = 2)
     private int aisleNumber;
+
+    public Auditorium(int auditoriumId, int locationId, String name, int rowNumber, int aisleNumber) {
+        this.auditoriumId = auditoriumId;
+        this.locationId = locationId;
+        this.name = name;
+        this.rowNumber = rowNumber;
+        this.aisleNumber = aisleNumber;
+    }
 
     public int getAuditoriumId() {
         return auditoriumId;
@@ -64,5 +74,16 @@ public class Auditorium {
 
     public void setAisleNumber(int aisleNumber) {
         this.aisleNumber = aisleNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Auditorium{" +
+                "auditoriumId=" + auditoriumId +
+                ", locationId=" + locationId +
+                ", name='" + name + '\'' +
+                ", rowNumber=" + rowNumber +
+                ", aisleNumber=" + aisleNumber +
+                '}';
     }
 }

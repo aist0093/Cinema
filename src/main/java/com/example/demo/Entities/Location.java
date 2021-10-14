@@ -20,6 +20,12 @@ public class Location {
     @Column(name = "name", nullable = false, length = 25)
     private String name;
 
+    public Location(int locationId, String district, String name) {
+        this.locationId = locationId;
+        this.district = district;
+        this.name = name;
+    }
+
     public int getLocationId() {
         return locationId;
     }
@@ -38,5 +44,14 @@ public class Location {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "locationId=" + locationId +
+                ", district='" + district + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.Entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,10 +11,10 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name="viewing", schema="demo31")
 public class Viewing {
     @Id
-
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewingId;
@@ -29,6 +30,14 @@ public class Viewing {
     @Basic
     @Column(name = "price", nullable = false)
     private float price;
+
+    public Viewing(int viewingId, int auditoriumId, int movieId, Date dateTime, float price) {
+        this.viewingId = viewingId;
+        this.auditoriumId = auditoriumId;
+        this.movieId = movieId;
+        this.dateTime = dateTime;
+        this.price = price;
+    }
 
     public int getViewingId() {
         return viewingId;
@@ -64,5 +73,16 @@ public class Viewing {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Viewing{" +
+                "viewingId=" + viewingId +
+                ", auditoriumId=" + auditoriumId +
+                ", movieId=" + movieId +
+                ", dateTime=" + dateTime +
+                ", price=" + price +
+                '}';
     }
 }
