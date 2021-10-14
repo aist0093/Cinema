@@ -9,18 +9,16 @@ import javax.persistence.*;
 public class Auditorium {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int auditoriumId;
     private int locationId;
     private String name;
     private int rowNumber;
     private int aisleNumber;
 
-
     public int getAuditoriumId() {
         return auditoriumId;
     }
-
 
     public int getLocationId() {
         return locationId;

@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name="viewing", schema="demo31")
 public class Viewing {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int viewingId;
     private int auditoriumId;
     private int movieId;
