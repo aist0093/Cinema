@@ -15,18 +15,18 @@ public class Viewing {
     @Id
 
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "viewingId", nullable = false, length = 11)
+    @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewingId;
-    @Column(name = "auditoriumId", nullable = false, length = 11)
+    @Column(name = "auditorium_id", nullable = false, length = 11)
     @ManyToOne
     @JoinColumn(name ="auditorium_id", referencedColumnName = "auditorium_id")
     private Auditorium auditoriumId;
-    @Column(name = "movieId", nullable = false, length = 11)
+    @Column(name = "movie_id", nullable = false, length = 11)
     @ManyToOne
     @JoinColumn(name ="movie_id", referencedColumnName = "movie_id")
     private Movie movieId;
     @Basic
-    @Column(name = "dateTime",nullable = false)
+    @Column(name = "date_time",nullable = false)
     private Date dateTime;
     @Basic
     @Column(name = "price", nullable = false)

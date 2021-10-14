@@ -2,24 +2,24 @@ package com.example.demo.Controllers.viewing;
 
 import com.example.demo.DTOs.ViewingDTO;
 import com.example.demo.Entities.Viewing;
-import com.example.demo.Services.IViewingService;
+import com.example.demo.Services.ViewingService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/api/viewings")
-public class ViewingController implements IViewingController{
-    IViewingService viewingService;
+public class ViewingController{
     ModelMapper modelMapper;
+    private ViewingService viewingService;
 
     @Autowired
-    public ViewingController(IViewingService viewingService, ModelMapper modelMapper){
-        this.viewingService = viewingService;
+    public ViewingController(ModelMapper modelMapper, ViewingService viewingService){
         this.modelMapper = modelMapper;
+        this.viewingService = viewingService;
     }
-
 
     //helper method to convert entity -> DTO
     private ViewingDTO convertToDto(Viewing viewing) {
@@ -31,8 +31,18 @@ public class ViewingController implements IViewingController{
         return modelMapper.map(paymentDto, Viewing.class);
     }
 
-    @Override
-    public ViewingDTO getById(int id) {
-        return convertToDto(viewingService.getById(id));
+
+    @DeleteMapping("/viewing/{id}")
+     ViewingDTO deleteViewing(@PathVariable int id){
+        viewingService.delete(id);
+        return null;
     }
+
+    @PatchMapping("/viewing/{id}")
+    ViewingDTO updateDateAndTime(@PathVariable Date dateTime, int id){
+      return viewingService.setDateTimeByViewingId(dateTime, id);
+    }
+
+
+
 }
