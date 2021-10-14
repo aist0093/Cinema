@@ -25,11 +25,15 @@ public class Seat {
     @Column(name = "seat_num", nullable = false, length = 2)
     private int seatNumber;
 
-    public Seat(int seatId, int viewingId, int row, int seatNumber) {
+    public Seat(int seatId, Viewing viewingId, int row, int seatNumber) {
         this.seatId = seatId;
         this.viewingId = viewingId;
         this.row = row;
         this.seatNumber = seatNumber;
+    }
+
+    public Seat() {
+
     }
 
     public int getSeatId() {
