@@ -32,8 +32,6 @@ public class ViewingService{
     public ViewingDTO setDateTimeByViewingId(Date dateTime, int viewingId){
         ViewingDTO v = viewingRepository.findViewingByViewingId(viewingId);
         v.setDateTime(dateTime);
-
-        viewingRepository.setDateTimeByViewingId(dateTime, )
         return v;
     }
 
