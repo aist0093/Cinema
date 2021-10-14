@@ -30,6 +30,14 @@ public class Viewing {
     @Column(name = "price", nullable = false)
     private float price;
 
+    public Viewing(int viewingId, int auditoriumId, int movieId, Date dateTime, float price) {
+        this.viewingId = viewingId;
+        this.auditoriumId = auditoriumId;
+        this.movieId = movieId;
+        this.dateTime = dateTime;
+        this.price = price;
+    }
+
     public int getViewingId() {
         return viewingId;
     }
@@ -64,5 +72,16 @@ public class Viewing {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Viewing{" +
+                "viewingId=" + viewingId +
+                ", auditoriumId=" + auditoriumId +
+                ", movieId=" + movieId +
+                ", dateTime=" + dateTime +
+                ", price=" + price +
+                '}';
     }
 }

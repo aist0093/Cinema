@@ -30,6 +30,14 @@ public class Auditorium {
     @Column(name = "aisle_num", nullable = false, length = 2)
     private int aisleNumber;
 
+    public Auditorium(int auditoriumId, int locationId, String name, int rowNumber, int aisleNumber) {
+        this.auditoriumId = auditoriumId;
+        this.locationId = locationId;
+        this.name = name;
+        this.rowNumber = rowNumber;
+        this.aisleNumber = aisleNumber;
+    }
+
     public int getAuditoriumId() {
         return auditoriumId;
     }
@@ -64,5 +72,16 @@ public class Auditorium {
 
     public void setAisleNumber(int aisleNumber) {
         this.aisleNumber = aisleNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Auditorium{" +
+                "auditoriumId=" + auditoriumId +
+                ", locationId=" + locationId +
+                ", name='" + name + '\'' +
+                ", rowNumber=" + rowNumber +
+                ", aisleNumber=" + aisleNumber +
+                '}';
     }
 }
