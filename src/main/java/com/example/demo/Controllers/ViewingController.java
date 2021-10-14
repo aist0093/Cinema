@@ -51,6 +51,7 @@ public class ViewingController {
     ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price) {
         return viewingService.create(auditorium_id, movie_id, date_time, price);
     }
+    //WORKS
     //get viewing by id
     @GetMapping("/{id}")
     ViewingDTO getViewingById(@PathVariable int id) {

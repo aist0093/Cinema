@@ -14,6 +14,7 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
+    //WORKS
     @GetMapping("/movie/{id}")
     public String getMovieInfo(@PathVariable String id) throws IOException {
         return movieService.fetchMovie(id).toString();
