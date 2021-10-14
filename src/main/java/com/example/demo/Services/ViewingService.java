@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 @Service
-public class ViewingService{
+public class ViewingService {
 
     private final ViewingRepository viewingRepository;
     private final AuditoriumRepository auditoriumRepository;
     private final MovieRepository movieRepository;
 
     @Autowired
-    public ViewingService(ViewingRepository viewingRepository, AuditoriumRepository auditoriumRepository, MovieRepository movieRepository){
+    public ViewingService(ViewingRepository viewingRepository, AuditoriumRepository auditoriumRepository, MovieRepository movieRepository) {
         this.viewingRepository = viewingRepository;
         this.auditoriumRepository = auditoriumRepository;
         this.movieRepository = movieRepository;
@@ -37,13 +37,13 @@ public class ViewingService{
         viewingRepository.deleteById(viewingId);
     }
 
-    public ViewingDTO setDateTimeByViewingId(Date dateTime, int viewingId){
+    public ViewingDTO setDateTimeByViewingId(Date dateTime, int viewingId) {
         ViewingDTO v = new ViewingDTO(viewingRepository.findViewingByViewingId(viewingId));
-//        v.setDateTime(dateTime);
+        v.setDateTime(dateTime);
         return v;
     }
 
     public ViewingDTO getById(int viewingId) {
-        return viewingRepository.findViewingByViewingId(viewingId);
+        return new ViewingDTO(viewingRepository.findViewingByViewingId(viewingId));
     }
 }

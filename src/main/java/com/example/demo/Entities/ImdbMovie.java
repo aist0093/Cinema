@@ -1,11 +1,11 @@
 package com.example.demo.Entities;
 
 public class ImdbMovie {
-    private String title;
-    private String description;
-    private String rating;
-    private String duration;
-    private String actors;
+    private final String title;
+    private final String description;
+    private final String rating;
+    private final String duration;
+    private final String actors;
 
     public ImdbMovie(String title, String description, String rating, String duration, String actors) {
         this.title = title;

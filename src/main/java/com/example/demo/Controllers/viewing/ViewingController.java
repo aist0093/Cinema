@@ -8,14 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.Date;
 
 @RestController
 @RequestMapping("/viewing")
-public class ViewingController{
+public class ViewingController {
     ModelMapper modelMapper;
     ViewingService viewingService;
+
+    @Autowired
+    public ViewingController(ViewingService viewingService) {
+//        this.modelMapper = modelMapper;
+        this.viewingService = viewingService;
+    }
 
     //helper method to convert entity -> DTO
     private ViewingDTO convertToDto(Viewing viewing) {
@@ -27,30 +32,25 @@ public class ViewingController{
         return modelMapper.map(viewingDTO, Viewing.class);
     }
 
-    @Autowired
-    public ViewingController(ViewingService viewingService){
-//        this.modelMapper = modelMapper;
-        this.viewingService = viewingService;
-    }
-
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    ViewingDTO deleteViewing(@PathVariable int id){
+    ViewingDTO deleteViewing(@PathVariable int id) {
         viewingService.delete(id);
         return null;
     }
 
     @PatchMapping("/{id}")
-    ViewingDTO updateDateAndTime(@PathVariable Date dateTime, int id){
-      return viewingService.setDateTimeByViewingId(dateTime, id);
+    ViewingDTO updateDateAndTime(@PathVariable Date dateTime, int id) {
+        return viewingService.setDateTimeByViewingId(dateTime, id);
     }
 
     @PostMapping("")
-    ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price){
+    ViewingDTO createViewing(@PathVariable Integer movie_id, Integer auditorium_id, Date date_time, float price) {
         return viewingService.create(auditorium_id, movie_id, date_time, price);
     }
+
     @GetMapping("/{id}")
-    ViewingDTO ViewingDTO (@PathVariable int id) throws IOException {
+    ViewingDTO getViewing(@PathVariable int id) {
         return viewingService.getById(id);
     }
 
