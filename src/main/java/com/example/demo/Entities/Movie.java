@@ -29,6 +29,10 @@ public class Movie {
         this.ageRequirement = ageRequirement;
     }
 
+    public Movie() {
+
+    }
+
     public int getMovieId() {
         return movieId;
     }

@@ -1,7 +1,6 @@
 package com.example.demo.Entities;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,51 +10,45 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 @Table(name="viewing", schema="demo31")
 public class Viewing {
     @Id
+
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "viewing_id", nullable = false, length = 11)
+    @Column(name = "viewingId", nullable = false, length = 11)
     private int viewingId;
+    @Column(name = "auditoriumId", nullable = false, length = 11)
+    @ManyToOne
+    @JoinColumn(name ="auditorium_id", referencedColumnName = "auditorium_id")
+    private Auditorium auditoriumId;
+    @Column(name = "movieId", nullable = false, length = 11)
+    @ManyToOne
+    @JoinColumn(name ="movie_id", referencedColumnName = "movie_id")
+    private Movie movieId;
     @Basic
-    @Column(name = "auditorium_id", nullable = false, length = 11)
-    private int auditoriumId;
-    @Basic
-    @Column(name = "movie_id", nullable = false, length = 11)
-    private int movieId;
-    @Basic
-    @Column(name = "date_time",nullable = false)
+    @Column(name = "dateTime",nullable = false)
     private Date dateTime;
     @Basic
     @Column(name = "price", nullable = false)
     private float price;
 
-    public Viewing(int viewingId, int auditoriumId, int movieId, Date dateTime, float price) {
-        this.viewingId = viewingId;
-        this.auditoriumId = auditoriumId;
-        this.movieId = movieId;
-        this.dateTime = dateTime;
-        this.price = price;
-    }
-
     public int getViewingId() {
         return viewingId;
     }
 
-    public int getAuditoriumId() {
+    public Auditorium getAuditoriumId() {
         return auditoriumId;
     }
 
-    public void setAuditoriumId(int auditoriumId) {
+    public void setAuditoriumId(Auditorium auditoriumId) {
         this.auditoriumId = auditoriumId;
     }
 
-    public int getMovieId() {
+    public Movie getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(int movieId) {
+    public void setMovieId(Movie movieId) {
         this.movieId = movieId;
     }
 
@@ -73,16 +66,5 @@ public class Viewing {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "Viewing{" +
-                "viewingId=" + viewingId +
-                ", auditoriumId=" + auditoriumId +
-                ", movieId=" + movieId +
-                ", dateTime=" + dateTime +
-                ", price=" + price +
-                '}';
     }
 }

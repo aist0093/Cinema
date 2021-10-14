@@ -14,9 +14,10 @@ public class Seat {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="seat_id", nullable = false, length = 11)
     private int seatId;
-    @Basic
     @Column(name ="viewing_id", nullable = false, length = 11)
-    private int viewingId;
+    @ManyToOne
+    @JoinColumn(name ="viewing_id", referencedColumnName = "viewing_id")
+    private Viewing viewingId;
     @Basic
     @Column(name = "row", nullable = false, length = 2)
     private int row;
@@ -24,22 +25,26 @@ public class Seat {
     @Column(name = "seat_num", nullable = false, length = 2)
     private int seatNumber;
 
-    public Seat(int seatId, int viewingId, int row, int seatNumber) {
+    public Seat(int seatId, Viewing viewingId, int row, int seatNumber) {
         this.seatId = seatId;
         this.viewingId = viewingId;
         this.row = row;
         this.seatNumber = seatNumber;
     }
 
+    public Seat() {
+
+    }
+
     public int getSeatId() {
         return seatId;
     }
 
-    public int getViewingId() {
+    public Viewing getViewingId() {
         return viewingId;
     }
 
-    public void setViewingId(int viewingId) {
+    public void setViewingId(Viewing viewingId) {
         this.viewingId = viewingId;
     }
 
