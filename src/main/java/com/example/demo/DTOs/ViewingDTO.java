@@ -1,11 +1,11 @@
 package com.example.demo.DTOs;
-import com.example.demo.Entities.Viewing;
-import java.util.Date;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Date;
 
 @EqualsAndHashCode
 @Setter
@@ -20,8 +20,4 @@ public class ViewingDTO {
           this.movieId = movieId;
           this.dateTime = dateTime;
      }
-//     getters
-//     setters
-//     constructors
-   
 }

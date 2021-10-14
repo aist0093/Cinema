@@ -24,7 +24,6 @@ public class Location {
         return locationId;
     }
 
-
     public String getDistrict() {
         return district;
     }
