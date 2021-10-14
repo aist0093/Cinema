@@ -12,25 +12,32 @@ import java.util.Date;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name="viewing", schema="demo31")
+@Table(name = "viewing", schema = "demo31")
 public class Viewing {
     @Id
 
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewingId;
     @ManyToOne
-    @JoinColumn(name ="auditorium_id", referencedColumnName = "auditorium_id")
+    @JoinColumn(name = "auditorium_id", referencedColumnName = "auditorium_id")
     private Auditorium auditorium;
     @ManyToOne
-    @JoinColumn(name ="movie_id", referencedColumnName = "movie_id")
+    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
     private Movie movie;
     @Basic
-    @Column(name = "date_time",nullable = false)
+    @Column(name = "date_time", nullable = false)
     private Date dateTime;
     @Basic
     @Column(name = "price", nullable = false)
     private float price;
+
+    public Viewing(Auditorium auditorium, Movie movie, Date dateTime, float price) {
+        this.auditorium = auditorium;
+        this.movie = movie;
+        this.dateTime = dateTime;
+        this.price = price;
+    }
 
     public int getViewingId() {
         return viewingId;
@@ -62,13 +69,6 @@ public class Viewing {
 
     public float getPrice() {
         return price;
-    }
-
-    public Viewing(Auditorium auditorium, Movie movie, Date dateTime, float price) {
-        this.auditorium = auditorium;
-        this.movie = movie;
-        this.dateTime = dateTime;
-        this.price = price;
     }
 
     public void setPrice(float price) {

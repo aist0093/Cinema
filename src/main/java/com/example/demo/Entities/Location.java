@@ -5,15 +5,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 @Setter
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name="location", schema="demo31")
+@Table(name = "location", schema = "demo31")
 public class Location {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name ="location_id", nullable = false, length = 11)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "location_id", nullable = false, length = 11)
     private int locationId;
     @Basic
     @Column(name = "district", nullable = false, length = 25)

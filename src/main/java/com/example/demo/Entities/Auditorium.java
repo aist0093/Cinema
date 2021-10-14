@@ -10,15 +10,15 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name="auditorium", schema="demo31")
+@Table(name = "auditorium", schema = "demo31")
 public class Auditorium {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auditorium_id", nullable = false, length = 11)      //declaring length of tables
     private int auditoriumId;                                          //creating tables
     @ManyToOne
-    @JoinColumn(name ="location_id", referencedColumnName = "location_id")
+    @JoinColumn(name = "location_id", referencedColumnName = "location_id")
     private Location location;
     @Basic
     @Column(name = "name", nullable = false, length = 2)

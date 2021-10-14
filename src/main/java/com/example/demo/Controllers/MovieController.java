@@ -1,4 +1,4 @@
-package com.example.demo.Controllers.movie;
+package com.example.demo.Controllers;
 
 import com.example.demo.Services.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ public class MovieController {
     @Autowired
     MovieService movieService;
 
+    //WORKS
     @GetMapping("/movie/{id}")
     public String getMovieInfo(@PathVariable String id) throws IOException {
         return movieService.fetchMovie(id).toString();

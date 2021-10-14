@@ -1,7 +1,6 @@
 package com.example.demo.Entities;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,14 +8,14 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name="seat", schema="demo31")
+@Table(name = "seat", schema = "demo31")
 public class Seat {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="seat_id", nullable = false, length = 11)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "seat_id", nullable = false, length = 11)
     private int seatId;
     @ManyToOne
-    @JoinColumn(name ="viewing_id", referencedColumnName = "viewing_id")
+    @JoinColumn(name = "viewing_id", referencedColumnName = "viewing_id")
     private Viewing viewingId;
     @Basic
     @Column(name = "row", nullable = false, length = 2)
