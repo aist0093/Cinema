@@ -40,10 +40,14 @@ public class ViewingService {
             Movie m = movieRepository.findMovieByMovieId(movie_id);
             Auditorium a = auditoriumRepository.findAuditoriumByAuditoriumId(auditorium_id);
             Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(date_time);
-            return new ViewingDTO(viewingRepository.save(new Viewing(a, m, dateTime, new Float(price))));
+            Viewing v = viewingRepository.save(new Viewing(a, m, dateTime, new Float(price)));
+            ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
+            ViewingDTO vDTO = new ViewingDTO(v);
+            vDTO.setTitle(imdbMovie.getTitle());
+            return vDTO;
         }
-        catch (ParseException ex){
-            System.out.println("Failed to parse!");
+        catch (Exception ex){
+            System.out.println("Failed");
         }
 
         return null;
@@ -61,10 +65,13 @@ public class ViewingService {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateTime);
             Viewing v = viewingRepository.findViewingByViewingId(viewingId);
             v.setDateTime(date);
-            return new ViewingDTO(viewingRepository.save(v));
+            ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
+            ViewingDTO vDTO = new ViewingDTO(viewingRepository.save(v));
+            vDTO.setTitle(imdbMovie.getTitle());
+            return vDTO;
          }
-        catch(ParseException ex){
-            System.out.println("Failed to parse!");
+        catch(Exception ex){
+            System.out.println("Failed!");
         }
         return null;
     }
