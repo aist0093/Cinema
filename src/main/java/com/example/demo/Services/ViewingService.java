@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -77,9 +78,14 @@ public class ViewingService {
         try {
             Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateTimeFrom);
             Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateTimeTo);
+            Calendar c = Calendar.getInstance();
+            c.setTime(endDate);
+            c.add(Calendar.DATE, 1);  // number of days to add
+            endDate = c.getTime();  // dt is now the new date
             Location location = locationRepository.findLocationByLocationId(location_id);
-
-            List<Viewing> vList = viewingRepository.findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThanEqual(location, startDate, endDate);
+            System.out.println(startDate);
+            System.out.println(endDate);
+            List<Viewing> vList = viewingRepository.findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThan(location, startDate, endDate);
             List<ViewingDTO> vDTOList = new ArrayList<>();
             for(Viewing v : vList){
                 vDTOList.add(new ViewingDTO(v));
