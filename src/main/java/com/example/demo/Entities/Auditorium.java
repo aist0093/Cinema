@@ -19,7 +19,8 @@ public class Auditorium {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auditorium_id", nullable = false, length = 11)      //declaring length of tables
     private int auditoriumId;                                          //creating tables
-   @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="location_id", nullable = false)
     private Location location;
     @Basic
     @Column(name = "name", nullable = false, length = 2)
