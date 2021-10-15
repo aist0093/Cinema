@@ -18,17 +18,17 @@ import java.util.Date;
 public class ViewingDTO {
 
     Date dateTime;
-    Movie movieId;
+    Movie movie;
     String title;
 
     public ViewingDTO(Movie movieId, Date dateTime) {
-        this.movieId = movieId;
+        this.movie = movieId;
         this.dateTime = dateTime;
     }
 
     public ViewingDTO(Viewing viewing) {
         this.dateTime = viewing.getDateTime();
-        this.movieId = viewing.getMovie();
+        this.movie = viewing.getMovie();
     }
 
     public void setTitle(String title){

@@ -15,7 +15,7 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "location_id", nullable = false, length = 11)
-    private int locationId;
+    private int location;
     @Basic
     @Column(name = "district", nullable = false, length = 25)
     private String district;
@@ -24,13 +24,13 @@ public class Location {
     private String name;
 
     public Location(int locationId, String district, String name) {
-        this.locationId = locationId;
+        this.location = locationId;
         this.district = district;
         this.name = name;
     }
 
     public int getLocationId() {
-        return locationId;
+        return location;
     }
 
     public String getDistrict() {
@@ -52,7 +52,7 @@ public class Location {
     @Override
     public String toString() {
         return "Location{" +
-                "locationId=" + locationId +
+                "locationId=" + location +
                 ", district='" + district + '\'' +
                 ", name='" + name + '\'' +
                 '}';

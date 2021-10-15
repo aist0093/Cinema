@@ -5,6 +5,6 @@ import com.example.demo.Entities.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AuditoriumRepository extends JpaRepository<Auditorium, Integer> {
-    Auditorium findAuditoriumByAuditoriumId(Integer id);
-    Location findLocationByAuditoriumId(Integer id);
+    Auditorium findAuditoriumByAuditorium(Integer id);
+    Location findLocationByAuditorium(Integer id);
 }

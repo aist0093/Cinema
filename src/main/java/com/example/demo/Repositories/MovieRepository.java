@@ -4,5 +4,5 @@ import com.example.demo.Entities.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MovieRepository extends JpaRepository<Movie, Integer> {
-    Movie findMovieByMovieId(Integer id);
+    Movie findMovieByMovie(Integer id);
 }

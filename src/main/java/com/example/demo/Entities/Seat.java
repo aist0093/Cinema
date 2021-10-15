@@ -13,7 +13,7 @@ public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seat_id", nullable = false, length = 11)
-    private int seatId;
+    private int seat;
     @ManyToOne
     @JoinColumn(name="viewing_id", nullable = false)
     private Viewing viewingId;
@@ -25,7 +25,7 @@ public class Seat {
     private int seatNumber;
 
     public Seat(int seatId, Viewing viewingId, int row, int seatNumber) {
-        this.seatId = seatId;
+        this.seat = seatId;
         this.viewingId = viewingId;
         this.row = row;
         this.seatNumber = seatNumber;
@@ -36,7 +36,7 @@ public class Seat {
     }
 
     public int getSeatId() {
-        return seatId;
+        return seat;
     }
 
     public Viewing getViewingId() {
@@ -66,7 +66,7 @@ public class Seat {
     @Override
     public String toString() {
         return "Seat{" +
-                "seatId=" + seatId +
+                "seatId=" + seat +
                 ", viewingId=" + viewingId +
                 ", row=" + row +
                 ", seatNumber=" + seatNumber +

@@ -15,7 +15,7 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id", nullable = false, length = 11)
-    private int movieId;
+    private int movie;
     @Basic
     @Column(name = "imdb_id", nullable = false, length = 10)
     private String imdbId;
@@ -24,7 +24,7 @@ public class Movie {
     private int ageRequirement;
 
     public Movie(int movieId, String imdbId, int ageRequirement) {
-        this.movieId = movieId;
+        this.movie = movieId;
         this.imdbId = imdbId;
         this.ageRequirement = ageRequirement;
     }
@@ -34,7 +34,7 @@ public class Movie {
     }
 
     public int getMovieId() {
-        return movieId;
+        return movie;
     }
 
     public String getImdbId() {
@@ -56,7 +56,7 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "movieId=" + movieId +
+                "movieId=" + movie +
                 ", imdbId='" + imdbId + '\'' +
                 ", ageRequirement=" + ageRequirement +
                 '}';

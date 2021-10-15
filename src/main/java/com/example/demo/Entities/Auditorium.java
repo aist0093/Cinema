@@ -18,7 +18,7 @@ public class Auditorium {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "auditorium_id", nullable = false, length = 11)      //declaring length of tables
-    private int auditoriumId;                                          //creating tables
+    private int auditorium;                                          //creating tables
     @ManyToOne
     @JoinColumn(name="location_id", nullable = false)
     private Location location;
@@ -33,8 +33,8 @@ public class Auditorium {
     private int aisleNumber;
 
 
-    public int getAuditoriumId() {
-        return auditoriumId;
+    public int getAuditorium() {
+        return auditorium;
     }
 
     public Location getLocation() {

@@ -27,7 +27,7 @@ public class MovieService {
     }
 
     public Movie findMovie(Integer id){
-        return movieRepository.findMovieByMovieId(id);
+        return movieRepository.findMovieByMovie(id);
     }
 
     public static String regEx(String source, String pattern, String name) {

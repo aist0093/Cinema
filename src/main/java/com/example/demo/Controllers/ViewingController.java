@@ -34,7 +34,7 @@ public class ViewingController {
     //update viewing date and time
     @PatchMapping("/viewing/{id}")
     ViewingDTO updateDateAndTime(@RequestBody ObjectNode body, @PathVariable int id) {
-        return viewingService.setDateTimeByViewingId(body.get("dateTime").asText(), id);
+        return viewingService.setDateTimeByViewing(body.get("dateTime").asText(), id);
     }
     //create a viewing
     @PostMapping("/viewing")

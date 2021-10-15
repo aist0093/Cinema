@@ -12,6 +12,6 @@ import java.util.List;
 
 @Repository
 public interface ViewingRepository extends JpaRepository<Viewing, Integer> {
-    Viewing findViewingByViewingId(Integer viewingId);
+    Viewing findViewingByViewing(Integer viewingId);
     List<Viewing> findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThan(Location location, Date dateTimeOne, Date dateTimeTwo);
 }

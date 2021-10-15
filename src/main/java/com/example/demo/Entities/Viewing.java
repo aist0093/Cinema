@@ -18,7 +18,7 @@ public class Viewing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "viewing_id", nullable = false, length = 11)
-    private int viewingId;
+    private int viewing;
     @ManyToOne
     @JoinColumn(name="auditorium_id", nullable = false)
     private Auditorium auditorium;
@@ -40,7 +40,7 @@ public class Viewing {
     }
 
     public int getViewingId() {
-        return viewingId;
+        return viewing;
     }
 
     public Auditorium getAuditorium() {

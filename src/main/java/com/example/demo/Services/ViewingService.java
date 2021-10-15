@@ -37,8 +37,8 @@ public class ViewingService {
 
     public ViewingDTO create(Integer movie_id, Integer auditorium_id, String date_time, double price) {
         try {
-            Movie m = movieRepository.findMovieByMovieId(movie_id);
-            Auditorium a = auditoriumRepository.findAuditoriumByAuditoriumId(auditorium_id);
+            Movie m = movieRepository.findMovieByMovie(movie_id);
+            Auditorium a = auditoriumRepository.findAuditoriumByAuditorium(auditorium_id);
             Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(date_time);
             Viewing v = viewingRepository.save(new Viewing(a, m, dateTime, new Float(price)));
             ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
@@ -58,12 +58,12 @@ public class ViewingService {
         viewingRepository.deleteById(viewingId);
     }
 
-    public ViewingDTO setDateTimeByViewingId( String dateTime, int viewingId) {
+    public ViewingDTO setDateTimeByViewing( String dateTime, int viewingId) {
 
         System.out.println(dateTime);
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateTime);
-            Viewing v = viewingRepository.findViewingByViewingId(viewingId);
+            Viewing v = viewingRepository.findViewingByViewing(viewingId);
             v.setDateTime(date);
             ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
             ViewingDTO vDTO = new ViewingDTO(viewingRepository.save(v));
@@ -77,7 +77,7 @@ public class ViewingService {
     }
 
     public ViewingDTO getById(int viewingId) {
-        return new ViewingDTO(viewingRepository.findViewingByViewingId(viewingId));
+        return new ViewingDTO(viewingRepository.findViewingByViewing(viewingId));
 
     }
 
@@ -89,7 +89,7 @@ public class ViewingService {
             c.setTime(endDate);
             c.add(Calendar.DATE, 1);  // number of days to add
             endDate = c.getTime();  // dt is now the new date
-            Location location = locationRepository.findLocationByLocationId(location_id);
+            Location location = locationRepository.findLocationByLocation(location_id);
             System.out.println(startDate);
             System.out.println(endDate);
             List<Viewing> vList = viewingRepository.findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThan(location, startDate, endDate);
