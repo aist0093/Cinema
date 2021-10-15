@@ -24,17 +24,6 @@ public class ViewingController {
         this.viewingService = viewingService;
     }
 
-    //helper method to convert entity -> DTO
-    private ViewingDTO convertToDto(Viewing viewing) {
-        return modelMapper.map(viewing, ViewingDTO.class);
-    }
-
-    //helper method to convert DTO -> entity
-    private Viewing convertToEntity(ViewingDTO viewingDTO) {
-        return modelMapper.map(viewingDTO, Viewing.class);
-    }
-
-
     //delete viewing by id
     @DeleteMapping("/viewing/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -49,8 +38,8 @@ public class ViewingController {
     }
     //create a viewing
     @PostMapping("/viewing")
-    ViewingDTO createViewing(@RequestBody Integer movie_id, @RequestBody Integer auditorium_id, @RequestBody String date_time, @RequestBody Float price) {
-        return viewingService.create(auditorium_id, movie_id, date_time, price);
+    ViewingDTO createViewing(@RequestBody ObjectNode body) {
+        return viewingService.create(body.get("auditoriumId").asInt(), body.get("movieId").asInt(), body.get("dateTime").asText(), body.get("price").asDouble());
     }
     //WORKS
     //get viewing by id
@@ -66,7 +55,6 @@ public class ViewingController {
 
     @GetMapping("/viewings/location/{id}")
     List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, @RequestParam String start_date, @RequestParam String end_date) {
-        System.out.println("Hello :)");
         return viewingService.getByLocationAndTimeframe(id, start_date, end_date);
     }
 

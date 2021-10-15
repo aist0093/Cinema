@@ -17,12 +17,12 @@ public class ImdbMovie {
 
     @Override
     public String toString() {
-        return "ImdbMovie{" +
-                "title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", rating='" + rating + '\'' +
-                ", duration='" + duration + '\'' +
-                ", actors='" + actors + '\'' +
+        return "{" +
+                "\'title\': \'" + title + '\'' +
+                ", \'description\': \'" + description + '\'' +
+                ", \'rating\': \'" + rating + '\'' +
+                ", \'duration\': \'" + duration + '\'' +
+                ", \'actors\': \'" + actors + '\'' +
                 '}';
     }
 

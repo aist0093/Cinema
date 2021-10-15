@@ -34,12 +34,12 @@ public class ViewingService {
         this.locationRepository = locationRepository;
     }
 
-    public ViewingDTO create(Integer movie_id, Integer auditorium_id, String date_time, float price) {
+    public ViewingDTO create(Integer movie_id, Integer auditorium_id, String date_time, double price) {
         try {
             Movie m = movieRepository.findMovieByMovieId(movie_id);
             Auditorium a = auditoriumRepository.findAuditoriumByAuditoriumId(auditorium_id);
             Date dateTime = new SimpleDateFormat("yyyy-MM-dd").parse(date_time);
-            return new ViewingDTO(viewingRepository.save(new Viewing(a, m, dateTime, price)));
+            return new ViewingDTO(viewingRepository.save(new Viewing(a, m, dateTime, new Float(price))));
         }
         catch (ParseException ex){
             System.out.println("Failed to parse!");
@@ -93,4 +93,6 @@ public class ViewingService {
 
         return null;
     }
+
+
 }
