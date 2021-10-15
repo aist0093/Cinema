@@ -79,7 +79,7 @@ public class ViewingService {
             Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateTimeTo);
             Location location = locationRepository.findLocationByLocationId(location_id);
 
-            List<Viewing> vList = viewingRepository.findViewingsByAuditorium_LocationContainingAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThanEqual(location, startDate, endDate);
+            List<Viewing> vList = viewingRepository.findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThanEqual(location, startDate, endDate);
             List<ViewingDTO> vDTOList = new ArrayList<>();
             for(Viewing v : vList){
                 vDTOList.add(new ViewingDTO(v));

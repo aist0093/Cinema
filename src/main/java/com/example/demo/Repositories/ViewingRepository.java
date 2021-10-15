@@ -12,10 +12,6 @@ import java.util.List;
 
 @Repository
 public interface ViewingRepository extends JpaRepository<Viewing, Integer> {
-//    List<Viewing> findViewingsByAuditoriumIdAndDateTime(Integer auditoriumId, Date dateTime);
-//    List<Viewing> findViewingsByAuditoriumIdAndDateTimeAndDateTime(Integer auditoriumId, Date startDateTime, Date endDateTime);
-//    Viewing findViewingByMovieId(Integer movieId);
     Viewing findViewingByViewingId(Integer viewingId);
-//    Viewing setDateTimeByViewingId(Date dateTime, Integer viewingId);
-    List<Viewing> findViewingsByAuditorium_LocationContainingAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThanEqual(Location location, Date dateTimeOne, Date dateTimeTwo);
+    List<Viewing> findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThanEqual(Location location, Date dateTimeOne, Date dateTimeTwo);
 }
