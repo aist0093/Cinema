@@ -48,14 +48,18 @@ public class ViewingController {
         return viewingService.getById(id);
     }
 
-    @GetMapping("/viewings/location/{id}?date={date}")
-    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, @PathVariable String date){
-        return viewingService.getByLocationAndTimeframe(id, date, date);
+    @GetMapping("/viewings/location/{id}")
+    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable Integer id, @RequestParam (required = false) String date , @RequestParam (required = false) String start_date, @RequestParam (required = false) String end_date){
+        if (date != null)
+            return viewingService.getByLocationAndTimeframe(id, date, date);
+        else if (start_date != null && end_date != null)
+            return viewingService.getByLocationAndTimeframe(id, start_date, end_date);
+        else return null;
     }
 
-    @GetMapping("/viewings/location/{id}")
-    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, @RequestParam String start_date, @RequestParam String end_date) {
-        return viewingService.getByLocationAndTimeframe(id, start_date, end_date);
-    }
+    //@GetMapping("/viewings/location/{id}")
+    //List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, @RequestParam String start_date, @RequestParam String end_date) {
+      //  return viewingService.getByLocationAndTimeframe(id, start_date, end_date);
+    //}
 
 }
