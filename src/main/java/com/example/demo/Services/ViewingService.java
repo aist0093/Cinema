@@ -38,7 +38,7 @@ public class ViewingService {
         try {
             Movie m = movieRepository.findMovieByMovieId(movie_id);
             Auditorium a = auditoriumRepository.findAuditoriumByAuditoriumId(auditorium_id);
-            Date dateTime = new SimpleDateFormat("yyyy-MM-dd").parse(date_time);
+            Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(date_time);
             return new ViewingDTO(viewingRepository.save(new Viewing(a, m, dateTime, new Float(price))));
         }
         catch (ParseException ex){
