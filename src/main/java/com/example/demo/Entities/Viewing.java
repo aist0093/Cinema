@@ -19,10 +19,10 @@ public class Viewing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewingId;
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="auditorium_id", nullable = false)
     private Auditorium auditorium;
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name="movie_id", nullable = false)
     private Movie movie;
     @Basic

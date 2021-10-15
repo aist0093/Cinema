@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -49,7 +50,11 @@ public class ViewingController {
     }
 
     @GetMapping("/viewings/location/{id}")
-    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable Integer id, @RequestParam (required = false) String date , @RequestParam (required = false) String start_date, @RequestParam (required = false) String end_date){
+    List<ViewingDTO> getViewingsByIdAndDate(@PathVariable Integer id,
+                                            @RequestParam (required = false) String date,
+                                            @RequestParam (required = false) String start_date,
+                                            @RequestParam (required = false) String end_date)
+                                            throws IOException {
         if (date != null)
             return viewingService.getByLocationAndTimeframe(id, date, date);
         else if (start_date != null && end_date != null)

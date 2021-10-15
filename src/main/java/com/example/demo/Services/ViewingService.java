@@ -1,10 +1,7 @@
 package com.example.demo.Services;
 
 import com.example.demo.DTOs.ViewingDTO;
-import com.example.demo.Entities.Auditorium;
-import com.example.demo.Entities.Location;
-import com.example.demo.Entities.Movie;
-import com.example.demo.Entities.Viewing;
+import com.example.demo.Entities.*;
 import com.example.demo.Repositories.AuditoriumRepository;
 import com.example.demo.Repositories.LocationRepository;
 import com.example.demo.Repositories.MovieRepository;
@@ -12,6 +9,7 @@ import com.example.demo.Repositories.ViewingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,13 +24,15 @@ public class ViewingService {
     private final AuditoriumRepository auditoriumRepository;
     private final MovieRepository movieRepository;
     private final LocationRepository locationRepository;
+    private final MovieService movieService;
 
     @Autowired
-    public ViewingService(ViewingRepository viewingRepository, AuditoriumRepository auditoriumRepository, MovieRepository movieRepository, LocationRepository locationRepository) {
+    public ViewingService(ViewingRepository viewingRepository, AuditoriumRepository auditoriumRepository, MovieRepository movieRepository, LocationRepository locationRepository,MovieService movieService) {
         this.viewingRepository = viewingRepository;
         this.auditoriumRepository = auditoriumRepository;
         this.movieRepository = movieRepository;
         this.locationRepository = locationRepository;
+        this.movieService = movieService;
     }
 
     public ViewingDTO create(Integer movie_id, Integer auditorium_id, String date_time, double price) {
@@ -74,7 +74,7 @@ public class ViewingService {
 
     }
 
-    public List<ViewingDTO> getByLocationAndTimeframe(Integer location_id, String dateTimeFrom, String dateTimeTo) {
+    public List<ViewingDTO> getByLocationAndTimeframe(Integer location_id, String dateTimeFrom, String dateTimeTo) throws IOException {
         try {
             Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateTimeFrom);
             Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateTimeTo);
@@ -88,7 +88,10 @@ public class ViewingService {
             List<Viewing> vList = viewingRepository.findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThan(location, startDate, endDate);
             List<ViewingDTO> vDTOList = new ArrayList<>();
             for(Viewing v : vList){
-                vDTOList.add(new ViewingDTO(v));
+                ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
+                ViewingDTO vDTO = new ViewingDTO(v);
+                vDTO.setTitle(imdbMovie.getTitle());
+                vDTOList.add(vDTO);
             }
 
             return vDTOList;
