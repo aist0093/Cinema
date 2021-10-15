@@ -48,8 +48,8 @@ public class ViewingService {
         return null;
     }
 
-    public void delete(int viewingId) {
-        if (!viewingRepository.existsById(viewingId)) System.out.println("viewing doesn't exist");
+    public void deleteViewing(int viewingId) {
+        //if (!viewingRepository.existsById(viewingId)) System.out.println("viewing doesn't exist");
         viewingRepository.deleteById(viewingId);
     }
 

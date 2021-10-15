@@ -19,11 +19,9 @@ public class Viewing {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewingId;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "auditorium_id")
+    @ManyToOne
     private Auditorium auditorium;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id")
+    @ManyToOne
     private Movie movie;
     @Basic
     @Column(name = "date_time", nullable = false)

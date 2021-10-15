@@ -37,10 +37,9 @@ public class ViewingController {
 
     //delete viewing by id
     @DeleteMapping("/viewing/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    ViewingDTO deleteViewing(@PathVariable int id) {
-        viewingService.delete(id);
-        return null;
+   // @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deleteViewing(@PathVariable int id) {
+        viewingService.deleteViewing(id);
     }
     //update viewing date and time
     @PatchMapping("/viewing/{id}")
