@@ -1,13 +1,9 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.DTOs.ViewingDTO;
-import com.example.demo.Entities.Viewing;
 import com.example.demo.Services.ViewingService;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -16,12 +12,10 @@ import java.util.List;
 
 @RestController
 public class ViewingController {
-    ModelMapper modelMapper;
     ViewingService viewingService;
 
     @Autowired
     public ViewingController(ViewingService viewingService) {
-//        this.modelMapper = modelMapper;
         this.viewingService = viewingService;
     }
 
@@ -61,10 +55,4 @@ public class ViewingController {
             return viewingService.getByLocationAndTimeframe(id, start_date, end_date);
         else return null;
     }
-
-    //@GetMapping("/viewings/location/{id}")
-    //List<ViewingDTO> getViewingsByIdAndDate(@PathVariable int id, @RequestParam String start_date, @RequestParam String end_date) {
-      //  return viewingService.getByLocationAndTimeframe(id, start_date, end_date);
-    //}
-
 }

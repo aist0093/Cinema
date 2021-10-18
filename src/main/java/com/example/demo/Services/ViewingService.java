@@ -40,7 +40,7 @@ public class ViewingService {
             Movie m = movieRepository.findMovieByMovie(movie_id);
             Auditorium a = auditoriumRepository.findAuditoriumByAuditorium(auditorium_id);
             Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(date_time);
-            Viewing v = viewingRepository.save(new Viewing(a, m, dateTime, new Float(price)));
+            Viewing v = viewingRepository.save(new Viewing(a, m, dateTime, (float) price));
             ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
             ViewingDTO vDTO = new ViewingDTO(v);
             vDTO.setTitle(imdbMovie.getTitle());
