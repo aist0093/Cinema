@@ -26,6 +26,7 @@ public class Booking {
         public Booking(Viewing viewing, String email){
             this.viewing = viewing;
             this.email = email;
+
         }
 
     public int getBooking() {

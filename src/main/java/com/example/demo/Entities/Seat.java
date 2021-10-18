@@ -26,8 +26,7 @@ public class Seat {
     @Column(name = "seat_num", nullable = false, length = 2)
     private int seatNumber;
 
-    public Seat(int seatId, Booking booking, int row, int seatNumber) {
-        this.seat = seatId;
+    public Seat(Booking booking, int row, int seatNumber) {
         this.booking = booking;
         this.row = row;
         this.seatNumber = seatNumber;
@@ -42,7 +41,7 @@ public class Seat {
         return booking;
     }
 
-    public void setBooking(Booking viewingId) {
+    public void setBooking(Booking booking) {
         this.booking = booking;
     }
 
