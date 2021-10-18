@@ -1,6 +1,7 @@
 package com.example.demo.Entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "movie", schema = "demo31")
 public class Movie {
 
@@ -29,8 +31,8 @@ public class Movie {
     @Column(name = "rate", nullable = false, length = 125)
     private String rate;
     @Basic
-    @Column(name = "length", nullable = false, length = 20)
-    private String length;
+    @Column(name = "duration", nullable = false, length = 125)
+    private String duration;
     @Basic
     @Column(name = "actors", nullable = false, length = 250)
     private String actors;
@@ -40,6 +42,10 @@ public class Movie {
     @Basic
     @Column(name = "video", nullable = false, length = 250)
     private String video;
+    @Basic
+    @Column(name = "description", nullable = false, length = 1000)
+    private String description;
+
 
 
     public Movie(int movieId, String imdbId, int ageRequirement) {
@@ -48,12 +54,16 @@ public class Movie {
         this.ageRequirement = ageRequirement;
     }
 
-    public Movie() {
+    public Movie(Integer movie_id, Integer age_req, String imdb_id, String actors, String image, String duration, String rate, String title, String video, String description) {
 
     }
 
-    public int getMovieId() {
+    public int getMovie() {
         return movie;
+    }
+
+    public void setMovie(int movie) {
+        this.movie = movie;
     }
 
     public String getImdbId() {
@@ -72,12 +82,75 @@ public class Movie {
         this.ageRequirement = ageRequirement;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public void setActors(String actors) {
+        this.actors = actors;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
-                "movieId=" + movie +
+                "movie=" + movie +
                 ", imdbId='" + imdbId + '\'' +
                 ", ageRequirement=" + ageRequirement +
+                ", title='" + title + '\'' +
+                ", rate='" + rate + '\'' +
+                ", length='" + duration + '\'' +
+                ", actors='" + actors + '\'' +
+                ", image='" + image + '\'' +
+                ", video='" + video + '\'' +
                 '}';
     }
+
+
 }
