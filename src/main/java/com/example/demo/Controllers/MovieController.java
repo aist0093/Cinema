@@ -29,17 +29,8 @@ public class MovieController {
     //WORKS
     @GetMapping("/movie/{id}")
     public Map<String, String> getMovieInfo(@PathVariable Integer id) throws IOException {
-        Movie movie = movieService.findMovie(id);
-        ImdbMovie imdbMovie = movieService.fetchMovie(movie.getImdbId());
-
-        HashMap<String, String> map = new HashMap<>();
-
-        map.put("title", imdbMovie.getTitle());
-        map.put("description", imdbMovie.getDescription());
-        map.put("rating", imdbMovie.getRating());
-        map.put("duration", imdbMovie.getDuration());
-        map.put("actors", imdbMovie.getActors());
-        map.put("ageReq", String.valueOf(movie.getAgeRequirement()));
-        return map;
+               return movieService.findMovie(id);
     }
+
+
 }
