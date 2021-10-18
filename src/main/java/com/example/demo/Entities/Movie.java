@@ -23,8 +23,8 @@ public class Movie {
     @Column(name = "age_req", nullable = false, length = 2)
     private int ageRequirement;
     @Basic
-    @Column(name = "tittle", nullable = false, length = 125)
-    private String tittle;
+    @Column(name = "title", nullable = false, length = 125)
+    private String title;
     @Basic
     @Column(name = "rate", nullable = false, length = 125)
     private String rate;
