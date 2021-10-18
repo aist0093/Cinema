@@ -1,6 +1,7 @@
 package com.example.demo.Entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "seat", schema = "demo31")
 public class Seat {
     @Id
@@ -15,8 +17,8 @@ public class Seat {
     @Column(name = "seat_id", nullable = false, length = 11)
     private int seat;
     @ManyToOne
-    @JoinColumn(name="viewing_id", nullable = false)
-    private Viewing viewingId;
+    @JoinColumn(name="booking_id", nullable = false)
+    private Booking booking;
     @Basic
     @Column(name = "row", nullable = false, length = 2)
     private int row;
@@ -24,27 +26,24 @@ public class Seat {
     @Column(name = "seat_num", nullable = false, length = 2)
     private int seatNumber;
 
-    public Seat(int seatId, Viewing viewingId, int row, int seatNumber) {
+    public Seat(int seatId, Booking booking, int row, int seatNumber) {
         this.seat = seatId;
-        this.viewingId = viewingId;
+        this.booking = booking;
         this.row = row;
         this.seatNumber = seatNumber;
     }
 
-    public Seat() {
-
-    }
 
     public int getSeatId() {
         return seat;
     }
 
-    public Viewing getViewingId() {
-        return viewingId;
+    public Booking booking() {
+        return booking;
     }
 
-    public void setViewingId(Viewing viewingId) {
-        this.viewingId = viewingId;
+    public void setBooking(Booking viewingId) {
+        this.booking = booking;
     }
 
     public int getRow() {
@@ -67,7 +66,7 @@ public class Seat {
     public String toString() {
         return "Seat{" +
                 "seatId=" + seat +
-                ", viewingId=" + viewingId +
+                ", booking=" + booking +
                 ", row=" + row +
                 ", seatNumber=" + seatNumber +
                 '}';

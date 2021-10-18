@@ -22,6 +22,25 @@ public class Movie {
     @Basic
     @Column(name = "age_req", nullable = false, length = 2)
     private int ageRequirement;
+    @Basic
+    @Column(name = "tittle", nullable = false, length = 125)
+    private String tittle;
+    @Basic
+    @Column(name = "rate", nullable = false, length = 125)
+    private String rate;
+    @Basic
+    @Column(name = "length", nullable = false, length = 20)
+    private String length;
+    @Basic
+    @Column(name = "actors", nullable = false, length = 250)
+    private String actors;
+    @Basic
+    @Column(name = "image", nullable = false, length = 250)
+    private String image;
+    @Basic
+    @Column(name = "video", nullable = false, length = 250)
+    private String video;
+
 
     public Movie(int movieId, String imdbId, int ageRequirement) {
         this.movie = movieId;

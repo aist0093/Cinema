@@ -70,6 +70,7 @@ public class MovieService {
         String length = regEx(html, "\\dh \\d{1,2}min", null);
         String actors = regEx(multiRegEx(html, "StyledComponents__ActorName-[a-zA-Z0-9-]+ [a-zA-Z0-9-]+\">(?<actor>[a-zA-Z ]+)<", "actor").toString(), "\\[(?<actors>.*?)\\]", "actors");
 
+
         return new ImdbMovie(title, description, rating, length, actors);
     }
 }
