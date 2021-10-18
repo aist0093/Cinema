@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -18,20 +19,25 @@ public class Booking {
         private int booking;
         @ManyToOne
         @JoinColumn(name="viewing_id", nullable = false)
-        private Auditorium viewing;
+        private Viewing viewing;          ///why??
         @Basic
         @Column(name = "email", nullable = false)
         private String email;
+
+    public Booking(Integer viewingId, String email) {
+
+
+    }
 
     public int getBooking() {
         return booking;
     }
 
-    public Auditorium getViewing() {
+    public Viewing getViewing() {
         return viewing;
     }
 
-    public void setViewing(Auditorium viewing) {
+    public void setViewing(Viewing viewing) {
         this.viewing = viewing;
     }
 
