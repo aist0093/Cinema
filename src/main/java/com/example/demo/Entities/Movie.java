@@ -54,7 +54,7 @@ public class Movie {
         this.ageRequirement = ageRequirement;
     }
 
-    public Movie(Integer movie_id, Integer age_req, String imdb_id, String actors, String image, String length, String rate, String title, String video) {
+    public Movie(Integer movie_id, Integer age_req, String imdb_id, String actors, String image, String duration, String rate, String title, String video, String description) {
 
     }
 
