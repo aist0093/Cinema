@@ -35,6 +35,7 @@ public class BookingService {
 
 
         Viewing viewing = viewingRepository.findViewingByMovieAndAuditoriumAndDateTime(title, name, dateTime);
-        Booking b = bookingRepository.save(new Booking())
+        Booking b = bookingRepository.save(new Booking());
+        return null;
     }
 }
