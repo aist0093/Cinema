@@ -29,6 +29,7 @@ public class ViewingDTO {
     public ViewingDTO(Viewing viewing) {
         this.dateTime = viewing.getDateTime();
         this.movie = viewing.getMovie();
+        this.title = this.movie.getTitle();
     }
 
     public void setTitle(String title){

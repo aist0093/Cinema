@@ -41,9 +41,7 @@ public class ViewingService {
             Auditorium a = auditoriumRepository.findAuditoriumByAuditorium(auditorium_id);
             Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(date_time);
             Viewing v = viewingRepository.save(new Viewing(a, m, dateTime, (float) price));
-            ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
             ViewingDTO vDTO = new ViewingDTO(v);
-            vDTO.setTitle(imdbMovie.getTitle());
             return vDTO;
         }
         catch (Exception ex){
@@ -65,10 +63,7 @@ public class ViewingService {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateTime);
             Viewing v = viewingRepository.findViewingByViewing(viewingId);
             v.setDateTime(date);
-            ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
-            ViewingDTO vDTO = new ViewingDTO(viewingRepository.save(v));
-            vDTO.setTitle(imdbMovie.getTitle());
-            return vDTO;
+            return new ViewingDTO(viewingRepository.save(v));
          }
         catch(Exception ex){
             System.out.println("Failed!");
@@ -95,9 +90,7 @@ public class ViewingService {
             List<Viewing> vList = viewingRepository.findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThan(location, startDate, endDate);
             List<ViewingDTO> vDTOList = new ArrayList<>();
             for(Viewing v : vList){
-                ImdbMovie imdbMovie = movieService.fetchMovie(v.getMovie().getImdbId());
                 ViewingDTO vDTO = new ViewingDTO(v);
-                vDTO.setTitle(imdbMovie.getTitle());
                 vDTOList.add(vDTO);
             }
 
