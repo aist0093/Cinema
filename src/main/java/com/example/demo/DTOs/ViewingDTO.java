@@ -1,7 +1,5 @@
 package com.example.demo.DTOs;
 
-import com.example.demo.Entities.Auditorium;
-import com.example.demo.Entities.ImdbMovie;
 import com.example.demo.Entities.Movie;
 import com.example.demo.Entities.Viewing;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,7 +30,7 @@ public class ViewingDTO {
         this.title = this.movie.getTitle();
     }
 
-    public void setTitle(String title){
+    public void setTitle(String title) {
         this.title = title;
     }
 }

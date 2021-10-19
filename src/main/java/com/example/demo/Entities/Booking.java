@@ -12,22 +12,22 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Table(name = "booking", schema = "demo31")
 public class Booking {
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "booking_id", nullable = false, length = 11)
-        private int booking;
-        @ManyToOne
-        @JoinColumn(name="viewing_id", nullable = false)
-        private Viewing viewing;
-        @Basic
-        @Column(name = "email", nullable = false)
-        private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "booking_id", nullable = false, length = 11)
+    private int booking;
+    @ManyToOne
+    @JoinColumn(name = "viewing_id", nullable = false)
+    private Viewing viewing;
+    @Basic
+    @Column(name = "email", nullable = false)
+    private String email;
 
-        public Booking(Viewing viewing, String email){
-            this.viewing = viewing;
-            this.email = email;
+    public Booking(Viewing viewing, String email) {
+        this.viewing = viewing;
+        this.email = email;
 
-        }
+    }
 
     public int getBooking() {
         return booking;

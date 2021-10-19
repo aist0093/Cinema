@@ -28,21 +28,20 @@ public class Movie {
     @Column(name = "title", length = 125)
     private String title;
     @Basic
-    @Column(name = "rate",  length = 125)
+    @Column(name = "rate", length = 125)
     private String rate;
     @Basic
     @Column(name = "duration", length = 125)
     private String duration;
     @Basic
-    @Column(name = "actors",  length = 250)
+    @Column(name = "actors", length = 250)
     private String actors;
     @Basic
-    @Column(name = "image",  length = 250)
+    @Column(name = "image", length = 250)
     private String image;
     @Basic
     @Column(name = "description", length = 500)
     private String description;
-
 
 
     public Movie(int movieId, String imdbId, int ageRequirement) {
@@ -119,14 +118,13 @@ public class Movie {
         this.image = image;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getDescription() {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @Override
     public String toString() {

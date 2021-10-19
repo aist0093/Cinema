@@ -1,8 +1,6 @@
 package com.example.demo.Services;
 
 import com.example.demo.DTOs.BookingDTO;
-import com.example.demo.DTOs.SeatDTO;
-import com.example.demo.DTOs.ViewingDTO;
 import com.example.demo.Entities.Booking;
 import com.example.demo.Entities.Seat;
 import com.example.demo.Entities.Viewing;
@@ -26,7 +24,9 @@ public class BookingService {
     private final SeatRepository seatRepository;
 
     @Autowired
-    public BookingService(BookingRepository bookingRepository, MovieRepository movieRepository, AuditoriumRepository auditoriumRepository, ViewingRepository viewingRepository, SeatRepository seatRepository) {
+    public BookingService(BookingRepository bookingRepository, MovieRepository movieRepository,
+                          AuditoriumRepository auditoriumRepository, ViewingRepository viewingRepository,
+                          SeatRepository seatRepository) {
         this.bookingRepository = bookingRepository;
         this.movieRepository = movieRepository;
         this.auditoriumRepository = auditoriumRepository;
@@ -47,17 +47,18 @@ public class BookingService {
         return null;
     }
 
-    public void deleteBooking(String email, Integer bookingId){
+    public void deleteBooking(String email, Integer bookingId) {
         List bList = new ArrayList<Booking>();
         bList.add(bookingRepository.findBookingByEmailAndBooking(email, bookingId));
         System.out.println(bList.size());
-            if(bList.size() == 1) {
-                seatRepository.deleteById((seatRepository.findSeatByBooking(bookingRepository.findBookingByBooking(bookingId))).getSeatId());
-                bookingRepository.deleteById(bookingId);
-            }
+        if (bList.size() == 1) {
+            seatRepository.deleteById((seatRepository.findSeatByBooking(bookingRepository
+                    .findBookingByBooking(bookingId))).getSeatId());
+            bookingRepository.deleteById(bookingId);
+        }
     }
 
-    public BookingDTO editBookingSeats(Integer bookingId, String email, Integer row, Integer seat_num){
+    public BookingDTO editBookingSeats(Integer bookingId, String email, Integer row, Integer seat_num) {
         Booking b = bookingRepository.findBookingByEmailAndBooking(email, bookingId);
         Seat s = seatRepository.findSeatByBooking(bookingRepository.findBookingByBooking(bookingId));
         s.setRow(row);

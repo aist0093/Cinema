@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -20,7 +19,7 @@ public class Viewing {
     @Column(name = "viewing_id", nullable = false, length = 11)
     private int viewing;
     @ManyToOne
-    @JoinColumn(name="auditorium_id", nullable = false)
+    @JoinColumn(name = "auditorium_id", nullable = false)
     private Auditorium auditorium;
     @Basic
     @Column(name = "date_time", nullable = false)

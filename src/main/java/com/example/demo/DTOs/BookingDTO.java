@@ -1,15 +1,11 @@
 package com.example.demo.DTOs;
 
-import com.example.demo.Entities.Auditorium;
 import com.example.demo.Entities.Booking;
-import com.example.demo.Entities.Movie;
 import com.example.demo.Entities.Viewing;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
 
 @NoArgsConstructor
 @Setter
@@ -21,7 +17,7 @@ public class BookingDTO {
     Viewing viewing;
     String email;
 
-    public BookingDTO(Booking booking){
+    public BookingDTO(Booking booking) {
         this.viewing = booking.getViewing();
         this.email = booking.getEmail();
     }

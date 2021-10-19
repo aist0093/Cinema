@@ -17,7 +17,7 @@ public class Seat {
     @Column(name = "seat_id", nullable = false, length = 11)
     private int seat;
     @ManyToOne
-    @JoinColumn(name="booking_id", nullable = false)
+    @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
     @Basic
     @Column(name = "row", nullable = false, length = 2)

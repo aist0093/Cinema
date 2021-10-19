@@ -1,7 +1,10 @@
 package com.example.demo.Services;
 
 import com.example.demo.DTOs.ViewingDTO;
-import com.example.demo.Entities.*;
+import com.example.demo.Entities.Auditorium;
+import com.example.demo.Entities.Location;
+import com.example.demo.Entities.Movie;
+import com.example.demo.Entities.Viewing;
 import com.example.demo.Repositories.AuditoriumRepository;
 import com.example.demo.Repositories.LocationRepository;
 import com.example.demo.Repositories.MovieRepository;
@@ -27,7 +30,7 @@ public class ViewingService {
     private final MovieService movieService;
 
     @Autowired
-    public ViewingService(ViewingRepository viewingRepository, AuditoriumRepository auditoriumRepository, MovieRepository movieRepository, LocationRepository locationRepository,MovieService movieService) {
+    public ViewingService(ViewingRepository viewingRepository, AuditoriumRepository auditoriumRepository, MovieRepository movieRepository, LocationRepository locationRepository, MovieService movieService) {
         this.viewingRepository = viewingRepository;
         this.auditoriumRepository = auditoriumRepository;
         this.movieRepository = movieRepository;
@@ -43,8 +46,7 @@ public class ViewingService {
             Viewing v = viewingRepository.save(new Viewing(a, m, dateTime, (float) price));
             ViewingDTO vDTO = new ViewingDTO(v);
             return vDTO;
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Failed");
         }
 
@@ -64,8 +66,7 @@ public class ViewingService {
             Viewing v = viewingRepository.findViewingByViewing(viewingId);
             v.setDateTime(date);
             return new ViewingDTO(viewingRepository.save(v));
-         }
-        catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("Failed!");
         }
         return null;
@@ -89,14 +90,13 @@ public class ViewingService {
             System.out.println(endDate);
             List<Viewing> vList = viewingRepository.findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThan(location, startDate, endDate);
             List<ViewingDTO> vDTOList = new ArrayList<>();
-            for(Viewing v : vList){
+            for (Viewing v : vList) {
                 ViewingDTO vDTO = new ViewingDTO(v);
                 vDTOList.add(vDTO);
             }
 
             return vDTOList;
-        }
-        catch (ParseException ex){
+        } catch (ParseException ex) {
             System.out.println("Failed to parse!");
         }
 

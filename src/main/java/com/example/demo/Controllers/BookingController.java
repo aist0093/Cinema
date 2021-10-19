@@ -15,19 +15,23 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
+    // delete a booking
     @DeleteMapping("/booking/")
-    public void cancelBooking(@RequestParam String email, @RequestParam int bookingId){
+    public void cancelBooking(@RequestParam String email, @RequestParam int bookingId) {
         bookingService.deleteBooking(email, bookingId);
     }
 
 
+    //create a booking
     @PostMapping("/booking")
     public BookingDTO createBooking(@RequestBody ObjectNode body) {
-        return bookingService.createBooking(body.get("title").asText(),  body.get("name").asText(), body.get("dateTime").asText(),
+        return bookingService.createBooking(body.get("title").asText(), body.get("name").asText(), body.get("dateTime").asText(),
                 body.get("email").asText(), body.get("row").asInt(), body.get("seat_num").asInt());
     }
+
+    //update a booking
     @PutMapping("/booking/{id}")
-    public BookingDTO updateRowAndSeat(@RequestBody ObjectNode body, @PathVariable int id){
+    public BookingDTO updateRowAndSeat(@RequestBody ObjectNode body, @PathVariable int id) {
         return bookingService.editBookingSeats(id, body.get("email").asText(), body.get("row").asInt(), body.get("seat_num").asInt());
     }
 
