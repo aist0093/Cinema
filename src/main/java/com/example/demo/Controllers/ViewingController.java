@@ -25,6 +25,8 @@ public class ViewingController {
     void deleteViewing(@PathVariable int id) {
         viewingService.deleteViewing(id);
     }
+
+
     //update viewing date and time
     @PatchMapping("/viewing/{id}")
     ViewingDTO updateDateAndTime(@RequestBody ObjectNode body, @PathVariable int id) {

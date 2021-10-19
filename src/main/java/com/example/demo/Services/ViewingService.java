@@ -56,7 +56,7 @@ public class ViewingService {
         viewingRepository.deleteById(viewingId);
     }
 
-    public ViewingDTO setDateTimeByViewing( String dateTime, int viewingId) {
+    public ViewingDTO setDateTimeByViewing(String dateTime, int viewingId) {
 
         System.out.println(dateTime);
         try {

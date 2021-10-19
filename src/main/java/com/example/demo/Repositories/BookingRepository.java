@@ -4,5 +4,8 @@ import com.example.demo.Entities.Booking;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BookingRepository extends JpaRepository<Booking, Integer> {
+    Booking findBookingByEmailAndBooking(String email, Integer bookingId);
+    void deleteBookingByEmailAndBooking(String email, Integer bookingId);
+    Booking findBookingByBooking(Integer bookingId);
 
 }
