@@ -43,7 +43,7 @@ public class Movie {
     @Column(name = "video", nullable = false, length = 250)
     private String video;
     @Basic
-    @Column(name = "description", nullable = false, length = 1000)
+    @Column(name = "description", nullable = false, length = 500)
     private String description;
 
 
@@ -137,6 +137,7 @@ public class Movie {
         return description;
     }
 
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -145,12 +146,11 @@ public class Movie {
                 ", ageRequirement=" + ageRequirement +
                 ", title='" + title + '\'' +
                 ", rate='" + rate + '\'' +
-                ", length='" + duration + '\'' +
+                ", duration='" + duration + '\'' +
                 ", actors='" + actors + '\'' +
                 ", image='" + image + '\'' +
                 ", video='" + video + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
-
-
 }
