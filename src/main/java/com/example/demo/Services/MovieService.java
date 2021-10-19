@@ -1,26 +1,20 @@
 package com.example.demo.Services;
 
-
-import com.example.demo.DTOs.MovieDTO;
-import com.example.demo.DTOs.ViewingDTO;
-import com.example.demo.Entities.Auditorium;
 import com.example.demo.Entities.ImdbMovie;
 import com.example.demo.Entities.Movie;
 
-import com.example.demo.Entities.Viewing;
 import com.example.demo.Repositories.MovieRepository;
 
-import net.bytebuddy.asm.Advice;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,24 +29,13 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public Map<String, String> findMovie(Integer id) throws IOException {
+    public Map<String, String> findMovie(Integer id) throws Exception {
         Movie movie = movieRepository.findMovieByMovie(id);
         System.out.println(movie.getTitle());
-        if(movie.getTitle() .equals("")) {
-            ImdbMovie imdbMovie = fetchMovie(movie.getImdbId());
-            System.out.println(movie.getTitle());
-            movie.setTitle(imdbMovie.getTitle());
-            movie.setActors(imdbMovie.getActors());
-            movie.setImage(imdbMovie.getImage());
-            movie.setDuration(imdbMovie.getDuration());
-            movie.setRate(imdbMovie.getRating());
-            movie.setAgeRequirement(movie.getAgeRequirement());
-            movie.setDescription(imdbMovie.getDescription());
-            movie.setVideo(imdbMovie.getVideo());
-            movieRepository.save(movie);
+        if(movie.getTitle().equals("")) {
+            updateMovieInfo(movie);
         }
         HashMap<String, String> map = new HashMap<>();
-
 
         map.put("title", movie.getTitle());
         map.put("description", movie.getDescription());
@@ -60,57 +43,82 @@ public class MovieService {
         map.put("duration", movie.getDuration());
         map.put("actors", movie.getActors());
         map.put("image" , movie.getImage());
-        map.put("video" , movie.getVideo());
         map.put("ageReq", String.valueOf(movie.getAgeRequirement()));
 
         return map;
-
     }
 
-    public static String regEx(String source, String pattern, String name) {
-        Matcher m = Pattern.compile(pattern).matcher(source);
-        if (m.find()) {
-            if (name != null)
-                return m.group(name);
-            else return m.group();
+//    public static String regEx(String source, String pattern, String name) {
+//        Matcher m = Pattern.compile(pattern).matcher(source);
+//        if (m.find()) {
+//            if (name != null)
+//                return m.group(name);
+//            else return m.group();
+//        }
+//        return null;
+//    }
+//
+//    public static ArrayList<String> multiRegEx(String source, String pattern, String name) {
+//        Matcher m = Pattern.compile(pattern).matcher(source);
+//        ArrayList<String> res = new ArrayList<>();
+//        while (m.find()) {
+//            if (name != null)
+//                res.add(m.group(name));
+//            else res.add(m.group());
+//        }
+//        return res;
+//    }
+
+//    public static ImdbMovie fetchMovie(String id) throws IOException {
+//        Scanner sc = new Scanner(new URL("https://www.imdb.com/title/" + id + "/").openStream());
+//        StringBuffer sb = new StringBuffer();
+//        while (sc.hasNext()) {
+//            sb.append(sc.next());
+//            sb.append(" ");
+//        }
+//        String html = sb.toString();
+//
+//        String title = regEx(html, "<h1.*?>(?<title>.*?)</h1>", "title");
+//        String description = regEx(html, "description\":\"(?<text>.*?)\",\"review\"", "text");
+//        String rating = regEx(html, ".*?>(?<rating>\\d{1,2}\\.\\d)</span><span>/<!-- -->10.*", "rating");
+//        String duration = regEx(html, "\\dh \\d{1,2}min", null);
+//        String actors = regEx(multiRegEx(html, "StyledComponents__ActorName-[a-zA-Z0-9-]+ [a-zA-Z0-9-]+\">(?<actor>[a-zA-Z ]+)<", "actor").toString(), "\\[(?<actors>.*?)\\]", "actors");
+//        String poster = regEx(html, "<a class=\"ipc-lockup-overlay ipc-focusable\" href=\"(?<link>.*?)\" aria-label", "link");
+//        System.out.println(poster);
+//
+//        return new ImdbMovie(title, description, rating, duration, actors, "", "");
+//    }
+
+    private final static String OmdbApiKey = "544f4d8a";
+
+    public boolean updateMovieInfo(Movie m) throws Exception{
+        if (m.getImdbId() == null)
+            return false;
+        String urlString = "http://www.omdbapi.com/?i=" + m.getImdbId() + "&apikey=" + OmdbApiKey;
+        URL url = new URL(urlString);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
         }
-        return null;
+        in.close();
+        con.disconnect();
+        System.out.println(content.toString());
+
+        JsonNode json = new ObjectMapper().readTree(content.toString());
+
+        m.setTitle(json.get("Title").asText());
+        m.setDescription(json.get("Plot").asText());
+        m.setRate(json.get("imdbRating").asText());
+        m.setDuration(json.get("Runtime").asText());
+        m.setActors(json.get("Actors").asText());
+        m.setImage(json.get("Poster").asText());
+        movieRepository.save(m);
+
+        return true;
     }
-
-    public static ArrayList<String> multiRegEx(String source, String pattern, String name) {
-        Matcher m = Pattern.compile(pattern).matcher(source);
-        ArrayList<String> res = new ArrayList<>();
-        while (m.find()) {
-            if (name != null)
-                res.add(m.group(name));
-            else res.add(m.group());
-        }
-        return res;
-    }
-
-    public static String contentBetween(String content, String start, String end) {
-        return content.replaceAll(start + "|" + end, "");
-    }
-
-    public static ImdbMovie fetchMovie(String id) throws IOException {
-        Scanner sc = new Scanner(new URL("https://www.imdb.com/title/" + id + "/").openStream());
-        StringBuffer sb = new StringBuffer();
-        while (sc.hasNext()) {
-            sb.append(sc.next());
-            sb.append(" ");
-        }
-        String html = sb.toString();
-
-        String title = regEx(html, "<h1.*?>(?<title>.*?)</h1>", "title");
-        String description = regEx(html, "description\":\"(?<text>.*?)\",\"review\"", "text");
-        String rating = regEx(html, ".*?>(?<rating>\\d{1,2}\\.\\d)</span><span>/<!-- -->10.*", "rating");
-        String duration = regEx(html, "\\dh \\d{1,2}min", null);
-        String actors = regEx(multiRegEx(html, "StyledComponents__ActorName-[a-zA-Z0-9-]+ [a-zA-Z0-9-]+\">(?<actor>[a-zA-Z ]+)<", "actor").toString(), "\\[(?<actors>.*?)\\]", "actors");
-
-
-        return new ImdbMovie(title, description, rating, duration, actors, "", "");
-    }
-
-
-
 }
