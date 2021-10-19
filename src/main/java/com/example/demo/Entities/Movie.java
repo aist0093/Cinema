@@ -16,31 +16,31 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_id", nullable = false, length = 11)
+    @Column(name = "movie_id", length = 11, nullable = false)
     private int movie;
     @Basic
-    @Column(name = "imdb_id", nullable = false, length = 10)
+    @Column(name = "imdb_id", length = 10)
     private String imdbId;
     @Basic
-    @Column(name = "age_req", nullable = false, length = 2)
+    @Column(name = "age_req", length = 2)
     private int ageRequirement;
     @Basic
-    @Column(name = "title", nullable = false, length = 125)
+    @Column(name = "title", length = 125)
     private String title;
     @Basic
-    @Column(name = "rate", nullable = false, length = 125)
+    @Column(name = "rate",  length = 125)
     private String rate;
     @Basic
-    @Column(name = "duration", nullable = false, length = 125)
+    @Column(name = "duration", length = 125)
     private String duration;
     @Basic
-    @Column(name = "actors", nullable = false, length = 250)
+    @Column(name = "actors",  length = 250)
     private String actors;
     @Basic
-    @Column(name = "image", nullable = false, length = 250)
+    @Column(name = "image",  length = 250)
     private String image;
     @Basic
-    @Column(name = "description", nullable = false, length = 500)
+    @Column(name = "description", length = 500)
     private String description;
 
 

@@ -27,8 +27,9 @@ public class MovieService {
     public Map<String, String> findMovie(Integer id) throws Exception {
         Movie movie = movieRepository.findMovieByMovie(id);
         System.out.println(movie.getTitle());
-        if(movie.getTitle().equals("")) {
+        if(movie.getTitle() == null ){
             updateMovieInfo(movie);
+            //if (movie.getTitle().equals(""));
         }
         HashMap<String, String> map = new HashMap<>();
 

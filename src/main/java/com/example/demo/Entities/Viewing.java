@@ -22,15 +22,15 @@ public class Viewing {
     @ManyToOne
     @JoinColumn(name="auditorium_id", nullable = false)
     private Auditorium auditorium;
-    @ManyToOne
-    @JoinColumn(name="movie_id", nullable = false)
-    private Movie movie;
     @Basic
     @Column(name = "date_time", nullable = false)
     private Date dateTime;
     @Basic
     @Column(name = "price", nullable = false)
     private float price;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id", nullable = false)
+    private Movie movie;
 
     public Viewing(Auditorium auditorium, Movie movie, Date dateTime, float price) {
         this.auditorium = auditorium;
