@@ -40,9 +40,6 @@ public class Movie {
     @Column(name = "image", nullable = false, length = 250)
     private String image;
     @Basic
-    @Column(name = "video", nullable = false, length = 250)
-    private String video;
-    @Basic
     @Column(name = "description", nullable = false, length = 500)
     private String description;
 
@@ -122,13 +119,6 @@ public class Movie {
         this.image = image;
     }
 
-    public String getVideo() {
-        return video;
-    }
-
-    public void setVideo(String video) {
-        this.video = video;
-    }
     public void setDescription(String description) {
         this.description = description;
     }
@@ -149,7 +139,6 @@ public class Movie {
                 ", duration='" + duration + '\'' +
                 ", actors='" + actors + '\'' +
                 ", image='" + image + '\'' +
-                ", video='" + video + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
