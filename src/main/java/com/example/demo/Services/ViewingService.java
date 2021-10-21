@@ -61,7 +61,6 @@ public class ViewingService {
     }
 
     public ViewingDTO setDateTimeByViewing(String dateTime, int viewingId) {
-
         System.out.println(dateTime);
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dateTime);

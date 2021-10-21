@@ -32,6 +32,7 @@ public class BookingController {
 //                body.get("email").asText(), body.get("row").asInt(), body.get("seat_num").asInt());
     }
 
+
     //update a booking
     @PutMapping("/booking/{id}")
     public BookingDTO updateRowAndSeat(@RequestBody ObjectNode body, @PathVariable int id) {
