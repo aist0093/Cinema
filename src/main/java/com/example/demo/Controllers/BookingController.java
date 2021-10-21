@@ -2,6 +2,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.DTOs.BookingDTO;
 import com.example.demo.Services.BookingService;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,11 @@ public class BookingController {
 
     //create a booking
     @PostMapping("/booking")
-    public BookingDTO createBooking(@RequestBody ObjectNode body) {
-        return bookingService.createBooking(body.get("title").asText(), body.get("name").asText(), body.get("dateTime").asText(),
-                body.get("email").asText(), body.get("row").asInt(), body.get("seat_num").asInt());
+    public BookingDTO createBooking(@RequestBody ArrayNode body) {
+        System.out.println(body.get(0));
+        return null;
+//        return bookingService.createBooking(body.get("title").asText(), body.get("name").asText(), body.get("dateTime").asText(),
+//                body.get("email").asText(), body.get("row").asInt(), body.get("seat_num").asInt());
     }
 
     //update a booking

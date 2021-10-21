@@ -8,6 +8,9 @@ import com.example.demo.Repositories.AuditoriumRepository;
 import com.example.demo.Repositories.BookingRepository;
 import com.example.demo.Repositories.SeatRepository;
 import com.example.demo.Repositories.ViewingRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,20 +34,14 @@ public class SeatService {
         this.auditoriumRepository = auditoriumRepository;
     }
 
-    public String getSeatsByAuditoriumAndDateTime(Integer auditoriumId, String date, String time){
+    public ArrayNode getSeatsByAuditoriumAndDateTime(Integer auditoriumId, String date, String time){
         try {
             String dateTimeStr = date + " " + time;
             Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateTimeStr);
-//            Viewing viewing = viewingRepository.findViewingByAuditorium(auditoriumId);
-//            System.out.println(viewing);
-//            List<Booking> bookings = bookingRepository.findBookingsByViewing(viewing);
-//            System.out.println(bookings.toString());
-//            List<Seat> seats = new ArrayList<>();
-//            for(Booking b : bookings)
-//                seats.addAll(seatRepository.findSeatsByBooking(b));
             Auditorium auditorium = auditoriumRepository.findAuditoriumByAuditorium(auditoriumId);
 
-            List<Viewing> viewings = viewingRepository.findViewingsByAuditorium(auditorium);
+            List<Viewing> viewings = viewingRepository.findViewingsByAuditoriumAndDateTime(auditorium, dateTime);
+            System.out.println(viewings + " " + dateTime.toString());
 
             List<Booking> bookings = new ArrayList<>();
             for(Viewing v : viewings)
@@ -54,10 +51,22 @@ public class SeatService {
             for(Booking b : bookings)
                 seats.addAll(seatRepository.findSeatsByBooking(b));
 
-            return seats.toString();
+            ObjectMapper m = new ObjectMapper();
+            ArrayNode jsonSeats = m.createArrayNode();
+            System.out.println(seats);
+            for(Seat s : seats){
+                ObjectNode o = m.createObjectNode();
+                o.put("row", s.getRow());
+                o.put("seat", s.getSeat());
+                jsonSeats.add(o);
+                System.out.println("H " + o);
+            }
+
+            System.out.println(jsonSeats);
+            return jsonSeats;
         }
         catch(Exception ex){
-            return "Error occured!";
+            return null;
         }
     }
 }

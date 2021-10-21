@@ -2,6 +2,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.Services.BookingService;
 import com.example.demo.Services.SeatService;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ public class SeatController {
     }
 
     @GetMapping("/seats/auditorium/{id}")
-    public String getSeats(@PathVariable Integer id, @RequestParam String date, @RequestParam String time){
+    public ArrayNode getSeats(@PathVariable Integer id, @RequestParam String date, @RequestParam String time){
         return seatService.getSeatsByAuditoriumAndDateTime(id, date, time);
     }
 }

@@ -13,7 +13,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingDTO {
 
-    Integer booking;
+//    Integer booking;
     Viewing viewing;
     String email;
 
