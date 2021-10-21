@@ -62,16 +62,6 @@ public class BookingService {
         }
     }
 
-    public BookingDTO editBookingSeats(Integer bookingId, String email, Integer row, Integer seat_num) {
-        Booking b = bookingRepository.findBookingByEmailAndBooking(email, bookingId);
-        Seat s = seatRepository.findSeatByBooking(bookingRepository.findBookingByBooking(bookingId));
-        s.setRow(row);
-        s.setSeatNumber(seat_num);
-        seatRepository.save(s);
-
-        return new BookingDTO(bookingRepository.save(b));
-    }
-
     @Transactional
     public BookingDTO updateBookingInfo(Integer id, ObjectNode info){
         Booking b = bookingRepository.findBookingByEmailAndBooking(info.get("email").asText(), id);
