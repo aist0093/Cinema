@@ -17,10 +17,10 @@ public class Booking {
     @Column(name = "booking_id", nullable = false, length = 11)
     private int booking;
     @ManyToOne
-    @JoinColumn(name = "viewing_id", nullable = false)
+    @JoinColumn(name = "viewing_id")
     private Viewing viewing;
     @Basic
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
     public Booking(Viewing viewing, String email) {
