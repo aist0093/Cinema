@@ -36,7 +36,7 @@ public class ViewingController {
     @PostMapping("/viewing")
     ViewingDTO createViewing(@RequestBody ObjectNode body) {
         System.out.println(body.get("movieId").asInt());
-        return viewingService.create(body.get("auditoriumId").asInt(), body.get("movieId").asInt(), body.get("dateTime").asText(), body.get("price").asDouble());
+        return viewingService.create(body.get("movieId").asInt(), body.get("auditoriumId").asInt(), body.get("dateTime").asText(), body.get("price").asDouble());
     }
 
     //get viewing by id
