@@ -48,10 +48,7 @@ public class BookingService {
     }
 
     public void deleteBooking(String email, Integer bookingId) {
-        List bList = new ArrayList<Booking>();
-        bList.add(bookingRepository.findBookingByEmailAndBooking(email, bookingId));
-        System.out.println(bList.size());
-        if (bList.size() == 1) {
+        if(bookingRepository.findBookingByEmailAndBooking(email, bookingId) != null){
             seatRepository.deleteById((seatRepository.findSeatByBooking(bookingRepository
                     .findBookingByBooking(bookingId))).getSeatId());
             bookingRepository.deleteById(bookingId);
