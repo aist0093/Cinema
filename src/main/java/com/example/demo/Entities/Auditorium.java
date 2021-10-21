@@ -66,4 +66,15 @@ public class Auditorium {
     public void setAisleNumber(int aisleNumber) {
         this.aisleNumber = aisleNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Auditorium{" +
+                "auditorium=" + auditorium +
+                ", location=" + location +
+                ", name='" + name + '\'' +
+                ", rowNumber=" + rowNumber +
+                ", aisleNumber=" + aisleNumber +
+                '}';
+    }
 }

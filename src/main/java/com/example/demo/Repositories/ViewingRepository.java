@@ -15,4 +15,7 @@ public interface ViewingRepository extends JpaRepository<Viewing, Integer> {
     Viewing findViewingByViewing(Integer viewingId);
     List<Viewing> findViewingsByAuditorium_LocationAndDateTimeIsGreaterThanEqualAndDateTimeIsLessThan(Location location, Date dateTimeOne, Date dateTimeTwo);
     Viewing findViewingByMovieTitleAndAuditoriumNameAndDateTime(String title, String name, Date startDate);
+    Viewing findViewingByAuditoriumAndDateTime(Integer auditoriumId, Date dateTime);
+    Viewing findViewingByDateTime(Date dateTime);
+    List<Viewing> findViewingsByAuditorium(Auditorium auditorium);
 }

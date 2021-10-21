@@ -32,7 +32,6 @@ public class Seat {
         this.seatNumber = seatNumber;
     }
 
-
     public int getSeatId() {
         return seat;
     }
@@ -63,11 +62,6 @@ public class Seat {
 
     @Override
     public String toString() {
-        return "Seat{" +
-                "seatId=" + seat +
-                ", booking=" + booking +
-                ", row=" + row +
-                ", seatNumber=" + seatNumber +
-                '}';
+        return "{" + row + ", " + seatNumber + "}";
     }
 }
