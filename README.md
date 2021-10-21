@@ -12,3 +12,4 @@ Alex(@alex040t):
 
 
 Link to the database: jdbc:mysql://den1.mysql2.gear.host:3306/demo31
+link to APi documentation: https://studkea-my.sharepoint.com/:w:/r/personal/anax1410_stud_kea_dk/_layouts/15/Doc.aspx?sourcedoc=%7BAA726472-7678-4546-AEDD-6877A8B7A727%7D&file=API%20Documentation.docx&action=default&mobileredirect=true&cid=c96f5dbd-23eb-4ad7-b754-fe199eb1771a
