@@ -27,7 +27,7 @@ public class Viewing {
     @Basic
     @Column(name = "price", nullable = false)
     private float price;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 

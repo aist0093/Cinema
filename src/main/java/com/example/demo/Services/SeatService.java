@@ -41,7 +41,6 @@ public class SeatService {
             Auditorium auditorium = auditoriumRepository.findAuditoriumByAuditorium(auditoriumId);
 
             List<Viewing> viewings = viewingRepository.findViewingsByAuditoriumAndDateTime(auditorium, dateTime);
-            System.out.println(viewings + " " + dateTime.toString());
 
             List<Booking> bookings = new ArrayList<>();
             for(Viewing v : viewings)
@@ -53,16 +52,13 @@ public class SeatService {
 
             ObjectMapper m = new ObjectMapper();
             ArrayNode jsonSeats = m.createArrayNode();
-            System.out.println(seats);
             for(Seat s : seats){
                 ObjectNode o = m.createObjectNode();
                 o.put("row", s.getRow());
                 o.put("seat", s.getSeat());
                 jsonSeats.add(o);
-                System.out.println("H " + o);
             }
 
-            System.out.println(jsonSeats);
             return jsonSeats;
         }
         catch(Exception ex){

@@ -5,11 +5,14 @@ import com.example.demo.Entities.Booking;
 import com.example.demo.Entities.Seat;
 import com.example.demo.Entities.Viewing;
 import com.example.demo.Repositories.*;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 
 
 @Service
@@ -32,12 +35,15 @@ public class BookingService {
         this.seatRepository = seatRepository;
     }
 
-    public BookingDTO createBooking(String title, String name, String date_time, String email, Integer row, Integer seat_num) {
+    public BookingDTO createBooking(Integer viewingId, String email, ArrayNode seats) {
         try {
-            Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(date_time);
-            Viewing viewing = viewingRepository.findViewingByMovieTitleAndAuditoriumNameAndDateTime(title, name, dateTime);
+            Viewing viewing = viewingRepository.findViewingByViewing(viewingId);
             Booking b = bookingRepository.save(new Booking(viewing, email));
-            Seat s = seatRepository.save(new Seat(b, row, seat_num));
+            Iterator<JsonNode> seatIterator = seats.elements();
+            while(seatIterator.hasNext()){
+                JsonNode seat = seatIterator.next();
+                seatRepository.save(new Seat(b, seat.get("row").asInt(), seat.get("seat").asInt()));
+            }
             return new BookingDTO(b);
         } catch (Exception ex) {
             System.out.println("Failed");
