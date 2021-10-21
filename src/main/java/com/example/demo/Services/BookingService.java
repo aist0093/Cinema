@@ -54,9 +54,9 @@ public class BookingService {
 
 
     public void deleteBooking(String email, Integer bookingId) {
-        if(bookingRepository.findBookingByEmailAndBooking(email, bookingId) != null){
-            seatRepository.deleteById((seatRepository.findSeatByBooking(bookingRepository
-                    .findBookingByBooking(bookingId))).getSeatId());
+        Booking b = bookingRepository.findBookingByEmailAndBooking(email, bookingId);
+        if(b != null){
+            seatRepository.deleteSeatsByBooking(b);
             bookingRepository.deleteById(bookingId);
         }
     }
