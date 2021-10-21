@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,8 +22,9 @@ public class ViewingController {
 
     //delete viewing by id
     @DeleteMapping("/viewing/{id}")
-    void deleteViewing(@PathVariable int id) {
-        viewingService.deleteViewing(id);
+    void deleteViewing(@PathVariable int id, HttpServletResponse response) {
+        if (!viewingService.deleteViewing(id))
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
     }
 
 

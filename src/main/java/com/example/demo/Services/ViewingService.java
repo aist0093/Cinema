@@ -50,13 +50,14 @@ public class ViewingService {
         return null;
     }
 
-    public void deleteViewing(Integer viewingId) {
+    public boolean deleteViewing(Integer viewingId) {
         try {
             viewingRepository.deleteById(viewingId);
         }
         catch(Exception ex){
-            System.out.println("viewing is book");
+            return false;
         }
+        return true;
     }
 
     public ViewingDTO setDateTimeByViewing(String dateTime, int viewingId) {
