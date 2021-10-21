@@ -4,7 +4,7 @@ Justas(@rudasrudas):
 Ana(@annkarinacaro):
  Set up the database and entities;
 
-Aiste(@aiste334):
+Aiste(@aiste334&@aist0093):
   Set up most of the repositories and DTOs, worked on Viewing and Booking.
   
 Alex(@alex040t):
