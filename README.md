@@ -1,5 +1,5 @@
-Justas(@rudasrudas):
-  
+Justas(@rudasrudas): 
+  Imdb webscrabing and Ombd api data fetching, endpoint design, service layer logic for viewing and seat endpoints 
 
 Ana(@annkarinacaro):
  Set up the database and entities;
