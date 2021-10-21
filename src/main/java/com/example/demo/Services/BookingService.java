@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 @Service
@@ -46,6 +44,7 @@ public class BookingService {
         }
         return null;
     }
+
 
     public void deleteBooking(String email, Integer bookingId) {
         if(bookingRepository.findBookingByEmailAndBooking(email, bookingId) != null){
