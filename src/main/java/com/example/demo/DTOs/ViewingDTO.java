@@ -16,21 +16,12 @@ import java.util.Date;
 public class ViewingDTO {
 
     Date dateTime;
-    Movie movie;
-    String title;
-
-    public ViewingDTO(Movie movieId, Date dateTime) {
-        this.movie = movieId;
-        this.dateTime = dateTime;
-    }
+    MovieDTO movie;
+    Integer viewingId;
 
     public ViewingDTO(Viewing viewing) {
         this.dateTime = viewing.getDateTime();
-        this.movie = viewing.getMovie();
-        this.title = this.movie.getTitle();
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+        this.movie = new MovieDTO(viewing.getMovie());
+        this.viewingId = viewing.getViewingId();
     }
 }

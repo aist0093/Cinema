@@ -33,7 +33,6 @@ public class BookingController {
     //update a booking
     @PutMapping("/booking/{id}")
     public BookingDTO updateRowAndSeat(@RequestBody ObjectNode body, @PathVariable int id) {
-        return bookingService.editBookingSeats(id, body.get("email").asText(), body.get("row").asInt(), body.get("seat_num").asInt());
+        return bookingService.updateBookingInfo(id, body);
     }
-
 }

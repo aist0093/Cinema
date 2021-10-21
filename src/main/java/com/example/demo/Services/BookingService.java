@@ -7,6 +7,7 @@ import com.example.demo.Entities.Viewing;
 import com.example.demo.Repositories.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -66,6 +67,20 @@ public class BookingService {
         s.setRow(row);
         s.setSeatNumber(seat_num);
         seatRepository.save(s);
+
+        return new BookingDTO(bookingRepository.save(b));
+    }
+
+    public BookingDTO updateBookingInfo(Integer id, ObjectNode info){
+        Booking b = bookingRepository.findBookingByEmailAndBooking(info.get("email").asText(), id);
+        if(b == null) return null;
+
+        b.setViewing(viewingRepository.findViewingByViewing(info.get("viewingId").asInt()));
+        Iterator<JsonNode> seatIterator = info.get("seats").elements();
+        while(seatIterator.hasNext()){
+            JsonNode seat = seatIterator.next();
+            seatRepository.save(new Seat(b, seat.get("row").asInt(), seat.get("seat").asInt()));
+        }
 
         return new BookingDTO(bookingRepository.save(b));
     }
