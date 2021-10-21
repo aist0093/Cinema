@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,7 +53,7 @@ public class BookingService {
         return null;
     }
 
-
+    @Transactional
     public void deleteBooking(String email, Integer bookingId) {
         Booking b = bookingRepository.findBookingByEmailAndBooking(email, bookingId);
         if(b != null){
@@ -71,13 +72,14 @@ public class BookingService {
         return new BookingDTO(bookingRepository.save(b));
     }
 
+    @Transactional
     public BookingDTO updateBookingInfo(Integer id, ObjectNode info){
         Booking b = bookingRepository.findBookingByEmailAndBooking(info.get("email").asText(), id);
         if(b == null) return null;
 
-        b.setViewing(viewingRepository.findViewingByViewing(info.get("viewingId").asInt()));
+        b.setViewing(viewingRepository.findViewingByViewing(info.get("viewing").asInt()));
 
-        seatRepository.deleteSeatsByBooking(b);
+        seatRepository.deleteAllByBooking(b);
         Iterator<JsonNode> seatIterator = info.get("seats").elements();
         while(seatIterator.hasNext()){
             JsonNode seat = seatIterator.next();
