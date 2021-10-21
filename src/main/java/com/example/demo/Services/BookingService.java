@@ -76,6 +76,8 @@ public class BookingService {
         if(b == null) return null;
 
         b.setViewing(viewingRepository.findViewingByViewing(info.get("viewingId").asInt()));
+
+        seatRepository.deleteSeatsByBooking(b);
         Iterator<JsonNode> seatIterator = info.get("seats").elements();
         while(seatIterator.hasNext()){
             JsonNode seat = seatIterator.next();

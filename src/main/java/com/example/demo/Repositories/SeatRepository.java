@@ -13,4 +13,5 @@ import java.util.List;
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
     Seat findSeatByBooking(Booking booking);
     List<Seat> findSeatsByBooking(Booking booking);
+    void deleteSeatsByBooking(Booking booking);
 }
