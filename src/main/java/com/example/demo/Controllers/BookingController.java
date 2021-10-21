@@ -16,8 +16,8 @@ public class BookingController {
     }
 
     // delete a booking
-    @DeleteMapping("/booking/")
-    public void cancelBooking(@RequestParam String email, @RequestParam int bookingId) {
+    @DeleteMapping("/booking/{bookingId}")
+    public void deleteOneBooking(@RequestParam String email, @PathVariable int bookingId) {
         bookingService.deleteBooking(email, bookingId);
     }
 

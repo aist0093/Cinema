@@ -22,4 +22,7 @@ public class BookingDTO {
         this.email = booking.getEmail();
     }
 
+    public Viewing getViewing() {
+        return viewing;
+    }
 }

@@ -1,18 +1,13 @@
 package com.example.demo.Services;
 
 import com.example.demo.DTOs.ViewingDTO;
-import com.example.demo.Entities.Auditorium;
-import com.example.demo.Entities.Location;
-import com.example.demo.Entities.Movie;
-import com.example.demo.Entities.Viewing;
-import com.example.demo.Repositories.AuditoriumRepository;
-import com.example.demo.Repositories.LocationRepository;
-import com.example.demo.Repositories.MovieRepository;
-import com.example.demo.Repositories.ViewingRepository;
+import com.example.demo.Entities.*;
+import com.example.demo.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,14 +23,16 @@ public class ViewingService {
     private final MovieRepository movieRepository;
     private final LocationRepository locationRepository;
     private final MovieService movieService;
+    private final BookingRepository bookingRepository;
 
     @Autowired
-    public ViewingService(ViewingRepository viewingRepository, AuditoriumRepository auditoriumRepository, MovieRepository movieRepository, LocationRepository locationRepository, MovieService movieService) {
+    public ViewingService(ViewingRepository viewingRepository, AuditoriumRepository auditoriumRepository, MovieRepository movieRepository, LocationRepository locationRepository, MovieService movieService, BookingRepository bookingRepository) {
         this.viewingRepository = viewingRepository;
         this.auditoriumRepository = auditoriumRepository;
         this.movieRepository = movieRepository;
         this.locationRepository = locationRepository;
         this.movieService = movieService;
+        this.bookingRepository = bookingRepository;
     }
 
     public ViewingDTO create(Integer movie_id, Integer auditorium_id, String date_time, double price) {
@@ -53,9 +50,13 @@ public class ViewingService {
         return null;
     }
 
-    public void deleteViewing(int viewingId) {
-        //if (!viewingRepository.existsById(viewingId)) System.out.println("viewing doesn't exist");
-        viewingRepository.deleteById(viewingId);
+    public void deleteViewing(Integer viewingId) {
+        try {
+            viewingRepository.deleteById(viewingId);
+        }
+        catch(Exception ex){
+            System.out.println("viewing is book");
+        }
     }
 
     public ViewingDTO setDateTimeByViewing(String dateTime, int viewingId) {
