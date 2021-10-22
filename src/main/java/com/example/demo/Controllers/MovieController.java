@@ -24,5 +24,8 @@ public class MovieController {
         return movieService.findMovie(id);
     }
 
-
+    @GetMapping("/test")
+    public String getTest(){
+        return "It works!";
+    }
 }
