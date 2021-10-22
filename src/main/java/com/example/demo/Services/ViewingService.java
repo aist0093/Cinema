@@ -1,13 +1,15 @@
 package com.example.demo.Services;
 
 import com.example.demo.DTOs.ViewingDTO;
-import com.example.demo.Entities.*;
+import com.example.demo.Entities.Auditorium;
+import com.example.demo.Entities.Location;
+import com.example.demo.Entities.Movie;
+import com.example.demo.Entities.Viewing;
 import com.example.demo.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
