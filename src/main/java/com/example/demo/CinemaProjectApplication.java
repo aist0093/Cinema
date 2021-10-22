@@ -11,7 +11,7 @@ public class CinemaProjectApplication {
         System.out.println("--------------------------------");
         System.out.println("--------------------------------");
         System.out.println("--------------------------------");
-        System.out.println("---------${IP_ADDRESS}----------");
+        System.out.println(System.getenv().get("IP_ADDRESS"));
         System.out.println("--------------------------------");
         System.out.println("--------------------------------");
         System.out.println("--------------------------------");

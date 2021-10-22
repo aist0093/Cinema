@@ -23,4 +23,6 @@ public class SeatController {
     public ArrayNode getSeats(@PathVariable Integer id, @RequestParam String date, @RequestParam String time){
         return seatService.getSeatsByAuditoriumAndDateTime(id, date, time);
     }
+
+
 }
