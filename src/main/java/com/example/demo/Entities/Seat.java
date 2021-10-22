@@ -20,7 +20,7 @@ public class Seat {
     @JoinColumn(name = "booking_id", nullable = false)
     private Booking booking;
     @Basic
-    @Column(name = "row", nullable = false, length = 2)
+    @Column(name = "seat_row", nullable = false, length = 2)
     private int row;
     @Basic
     @Column(name = "seat_num", nullable = false, length = 2)
