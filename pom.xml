@@ -19,6 +19,7 @@
 <!--        <property name="url" value=-->
 <!--                "jdbc:mysql://${IP_ADDRESS}:3306/cinema;INIT=create schema if not exists cinema"-->
 <!--        />-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
     </properties>
 
     <dependencies>
