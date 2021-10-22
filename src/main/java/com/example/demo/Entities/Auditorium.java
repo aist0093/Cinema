@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "auditorium")
+@Table(name = "auditorium", schema = "cinema")
 public class Auditorium {
 
     @Id

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "booking")
+@Table(name = "booking", schema = "cinema")
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

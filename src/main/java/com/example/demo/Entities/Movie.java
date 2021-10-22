@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "movie")
+@Table(name = "movie", schema = "cinema")
 public class Movie {
 
     @Id
