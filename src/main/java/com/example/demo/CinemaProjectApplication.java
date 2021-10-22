@@ -7,17 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CinemaProjectApplication {
 
     public static void main(String[] args) {
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("Server port: ${PORT}");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("================================");
-        System.out.println("================================");
         SpringApplication.run(CinemaProjectApplication.class, args);
     }
 
