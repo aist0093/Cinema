@@ -17,7 +17,6 @@ import java.util.Map;
 @Service
 public class MovieService {
 
-    private final static String OmdbApiKey = "544f4d8a";
     private final MovieRepository movieRepository;
 
     @Autowired
