@@ -21,7 +21,6 @@ public class MovieController {
     //WORKS
     @GetMapping("/movie/{id}")
     public Map<String, String> getMovieInfo(@PathVariable Integer id) throws Exception {
-       System.out.println(id);
         return movieService.findMovie(id);
     }
 
