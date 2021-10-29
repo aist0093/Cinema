@@ -28,4 +28,10 @@ public class MovieController {
     public String getTest(){
         return "It works!";
     }
+
+    @GetMapping("/testone")
+    public String getTestOne(){
+        return "It works, test one";
+    }
 }
+
