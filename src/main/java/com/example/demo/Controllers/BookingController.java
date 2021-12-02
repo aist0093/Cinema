@@ -39,14 +39,14 @@ public class BookingController {
     public BookingDTO updateRowAndSeat(@RequestBody ObjectNode body, @PathVariable int id) {
         return bookingService.updateBookingInfo(id, body);
     }
-
-    @Bean
-    public WebMvcConfigurer configure(){
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry){
-                registry.addMapping("/*").allowedOrigins("https://cinema-backend1.herokuapp.com/");
-            }
-        };
-    }
+//
+//    @Bean
+//    public WebMvcConfigurer configure(){
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry){
+//                registry.addMapping("/*").allowedOrigins("https://cinema-backend1.herokuapp.com/");
+//            }
+//        };
+//    }
 }

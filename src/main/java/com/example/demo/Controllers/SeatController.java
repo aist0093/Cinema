@@ -24,14 +24,14 @@ public class SeatController {
     public ArrayNode getSeats(@PathVariable Integer id, @RequestParam String date, @RequestParam String time){
         return seatService.getSeatsByAuditoriumAndDateTime(id, date, time);
     }
-
-    @Bean
-    public WebMvcConfigurer configure(){
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry){
-                registry.addMapping("/*").allowedOrigins("https://cinema-backend1.herokuapp.com/");
-            }
-        };
-    }
+//
+//    @Bean
+//    public WebMvcConfigurer configure(){
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry){
+//                registry.addMapping("/*").allowedOrigins("https://cinema-backend1.herokuapp.com/");
+//            }
+//        };
+//    }
 }
