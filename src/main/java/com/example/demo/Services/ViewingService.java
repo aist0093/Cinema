@@ -1,5 +1,6 @@
 package com.example.demo.Services;
 
+import com.example.demo.DTOs.LocationDTO;
 import com.example.demo.DTOs.ViewingDTO;
 import com.example.demo.Entities.Auditorium;
 import com.example.demo.Entities.Location;
@@ -78,6 +79,16 @@ public class ViewingService {
     public ViewingDTO getById(int viewingId) {
         return new ViewingDTO(viewingRepository.findViewingByViewing(viewingId));
 
+    }
+
+    public List<LocationDTO> getLocations(){
+        List<Location> locations = locationRepository.findAll();
+        List<LocationDTO> locationDTOs = new ArrayList<>();
+        for(Location location : locations){
+            locationDTOs.add(new LocationDTO(location));
+        }
+
+        return locationDTOs;
     }
 
     public List<ViewingDTO> getByLocationAndTimeframe(Integer location_id, String dateTimeFrom, String dateTimeTo) throws IOException {

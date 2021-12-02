@@ -1,5 +1,6 @@
 package com.example.demo.Controllers;
 
+import com.example.demo.DTOs.LocationDTO;
 import com.example.demo.DTOs.ViewingDTO;
 import com.example.demo.Services.ViewingService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -58,5 +59,10 @@ public class ViewingController {
         else if (start_date != null && end_date != null)
             return viewingService.getByLocationAndTimeframe(id, start_date, end_date);
         else return null;
+    }
+
+    @GetMapping("/locations")
+    List<LocationDTO> getLocations(){
+        return viewingService.getLocations();
     }
 }
