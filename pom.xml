@@ -14,7 +14,7 @@
     <name>CinemaProject</name>
     <description>Cinema project 3 semester</description>
     <properties>
-        <java.version>1.11</java.version>
+        <java.version>11</java.version>
 <!--        <maven.compiler.release>11</maven.compiler.release>-->
 <!--        <property name="url" value=-->
 <!--                "jdbc:mysql://${IP_ADDRESS}:3306/cinema;INIT=create schema if not exists cinema"-->
