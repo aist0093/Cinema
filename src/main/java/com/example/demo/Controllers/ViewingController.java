@@ -75,7 +75,7 @@ public class ViewingController {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry){
-                registry.addMapping("/*").allowedOrigins("https://cinema-backend1.herokuapp.com/");
+                registry.addMapping("/*").allowedOrigins("*");
             }
         };
     }
