@@ -14,14 +14,17 @@ public class LocationDTO {
 
     String name;
     Integer id;
+    String district;
 
-    public LocationDTO(String name, int id){
+    public LocationDTO(String name, int id, String district){
         this.name = name;
         this.id = id;
+        this.district = district;
     }
 
     public LocationDTO(Location location){
         this.name = location.getName();
         this.id = location.getLocationId();
+        this.district = location.getDistrict();
     }
 }
