@@ -45,7 +45,7 @@ public class BookingController {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry){
-                registry.addMapping("/*").allowedOrigins("*");
+                registry.addMapping("/*").allowedOrigins("https://cinema-backend1.herokuapp.com/");
             }
         };
     }
