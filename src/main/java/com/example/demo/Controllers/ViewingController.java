@@ -5,7 +5,10 @@ import com.example.demo.DTOs.ViewingDTO;
 import com.example.demo.Services.ViewingService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -13,6 +16,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins="*")
 public class ViewingController {
     ViewingService viewingService;
 
@@ -64,5 +68,15 @@ public class ViewingController {
     @GetMapping("/locations")
     List<LocationDTO> getLocations(){
         return viewingService.getLocations();
+    }
+
+    @Bean
+    public WebMvcConfigurer configure(){
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry){
+                registry.addMapping("/*").allowedOrigins("https://cinema-backend1.herokuapp.com/");
+            }
+        };
     }
 }
