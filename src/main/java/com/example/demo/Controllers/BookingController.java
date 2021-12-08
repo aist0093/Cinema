@@ -26,7 +26,6 @@ public class BookingController {
         bookingService.deleteBooking(email, bookingId);
     }
 
-
     //create a booking
     @PostMapping("/booking")
     public BookingDTO createBooking(@RequestBody ObjectNode body) {

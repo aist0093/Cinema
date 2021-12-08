@@ -22,7 +22,13 @@ public class SeatController {
 
     @GetMapping("/seats/auditorium/{id}")
     public ArrayNode getSeats(@PathVariable Integer id, @RequestParam String date, @RequestParam String time){
+        System.out.println(id + " " + date + " " + time);
         return seatService.getSeatsByAuditoriumAndDateTime(id, date, time);
+    }
+
+    @GetMapping("/seats/viewing/{id}")
+    public ArrayNode getSeatsByViewing(@PathVariable Integer id){
+        return seatService.getSeatsByViewing(id);
     }
 //
 //    @Bean

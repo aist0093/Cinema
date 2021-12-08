@@ -65,4 +65,30 @@ public class SeatService {
             return null;
         }
     }
+
+    public ArrayNode getSeatsByViewing(Integer viewingId){
+        try {
+            Viewing viewing = viewingRepository.findViewingByViewing(viewingId);
+
+            List<Booking> bookings = bookingRepository.findBookingsByViewing(viewing);
+
+            List<Seat> seats = new ArrayList<>();
+            for(Booking b : bookings)
+                seats.addAll(seatRepository.findSeatsByBooking(b));
+
+            ObjectMapper m = new ObjectMapper();
+            ArrayNode jsonSeats = m.createArrayNode();
+            for(Seat s : seats){
+                ObjectNode o = m.createObjectNode();
+                o.put("row", s.getRow());
+                o.put("seat", s.getSeat());
+                jsonSeats.add(o);
+            }
+
+            return jsonSeats;
+        }
+        catch(Exception ex){
+            return null;
+        }
+    }
 }
