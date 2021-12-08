@@ -34,7 +34,7 @@ public class SeatService {
         this.auditoriumRepository = auditoriumRepository;
     }
 
-    public ArrayNode getSeatsByAuditoriumAndDateTime(Integer auditoriumId, String date, String time){
+    public ObjectNode getSeatsByAuditoriumAndDateTime(Integer auditoriumId, String date, String time){
         try {
             String dateTimeStr = date + " " + time;
             Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(dateTimeStr);
@@ -51,6 +51,11 @@ public class SeatService {
                 seats.addAll(seatRepository.findSeatsByBooking(b));
 
             ObjectMapper m = new ObjectMapper();
+
+            ObjectNode dimensions = m.createObjectNode();
+            dimensions.put("rows", auditorium.getRowNumber());
+            dimensions.put("seats", auditorium.getAisleNumber());
+
             ArrayNode jsonSeats = m.createArrayNode();
             for(Seat s : seats){
                 ObjectNode o = m.createObjectNode();
@@ -59,24 +64,33 @@ public class SeatService {
                 jsonSeats.add(o);
             }
 
-            return jsonSeats;
+            ObjectNode seatInfo = m.createObjectNode();
+            seatInfo.put("dimensions", dimensions);
+            seatInfo.put("seats", jsonSeats);
+
+            return seatInfo;
         }
         catch(Exception ex){
             return null;
         }
     }
 
-    public ArrayNode getSeatsByViewing(Integer viewingId){
+    public ObjectNode getSeatsByViewing(Integer viewingId){
         try {
             Viewing viewing = viewingRepository.findViewingByViewing(viewingId);
-
             List<Booking> bookings = bookingRepository.findBookingsByViewing(viewing);
+            Auditorium auditorium = viewing.getAuditorium();
 
             List<Seat> seats = new ArrayList<>();
             for(Booking b : bookings)
                 seats.addAll(seatRepository.findSeatsByBooking(b));
 
             ObjectMapper m = new ObjectMapper();
+
+            ObjectNode dimensions = m.createObjectNode();
+            dimensions.put("rows", auditorium.getRowNumber());
+            dimensions.put("seats", auditorium.getAisleNumber());
+
             ArrayNode jsonSeats = m.createArrayNode();
             for(Seat s : seats){
                 ObjectNode o = m.createObjectNode();
@@ -85,7 +99,11 @@ public class SeatService {
                 jsonSeats.add(o);
             }
 
-            return jsonSeats;
+            ObjectNode seatInfo = m.createObjectNode();
+            seatInfo.put("dimensions", dimensions);
+            seatInfo.put("seats", jsonSeats);
+
+            return seatInfo;
         }
         catch(Exception ex){
             return null;

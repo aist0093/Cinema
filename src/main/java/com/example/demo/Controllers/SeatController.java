@@ -3,6 +3,7 @@ package com.example.demo.Controllers;
 import com.example.demo.Services.BookingService;
 import com.example.demo.Services.SeatService;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class SeatController {
     }
 
     @GetMapping("/seats/viewing/{id}")
-    public ArrayNode getSeatsByViewing(@PathVariable Integer id){
+    public ObjectNode getSeatsByViewing(@PathVariable Integer id){
         return seatService.getSeatsByViewing(id);
     }
 //
