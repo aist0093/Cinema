@@ -55,7 +55,7 @@ public class SeatService {
             for(Seat s : seats){
                 ObjectNode o = m.createObjectNode();
                 o.put("row", s.getRow());
-                o.put("seat", s.getSeat());
+                o.put("seat", s.getSeatNumber());
                 jsonSeats.add(o);
             }
 
@@ -81,7 +81,7 @@ public class SeatService {
             for(Seat s : seats){
                 ObjectNode o = m.createObjectNode();
                 o.put("row", s.getRow());
-                o.put("seat", s.getSeat());
+                o.put("seat", s.getSeatNumber());
                 jsonSeats.add(o);
             }
 
