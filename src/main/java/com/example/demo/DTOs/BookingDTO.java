@@ -12,10 +12,12 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BookingDTO {
 
+    Integer bookingId;
     ViewingDTO viewing;
     String email;
 
     public BookingDTO(Booking booking) {
+        this.bookingId = booking.getBooking();
         this.viewing = new ViewingDTO(booking.getViewing());
         this.email = booking.getEmail();
     }
