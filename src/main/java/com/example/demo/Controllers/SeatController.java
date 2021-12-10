@@ -27,6 +27,11 @@ public class SeatController {
         return seatService.getSeatsByAuditoriumAndDateTime(id, date, time);
     }
 
+    @GetMapping("/seats/booking/{id}")
+    public ObjectNode getSeatsByBooking(@PathVariable Integer id){
+        return seatService.getSeatsByBooking(id);
+    }
+
     @GetMapping("/seats/viewing/{id}")
     public ObjectNode getSeatsByViewing(@PathVariable Integer id){
         return seatService.getSeatsByViewing(id);

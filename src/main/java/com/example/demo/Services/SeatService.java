@@ -75,6 +75,31 @@ public class SeatService {
         }
     }
 
+    public ObjectNode getSeatsByBooking(Integer bookingId){
+        try {
+            Booking booking = bookingRepository.findBookingByBooking(bookingId);
+            List<Seat> seats = seatRepository.findSeatsByBooking(booking);
+
+            ObjectMapper m = new ObjectMapper();
+
+            ArrayNode jsonSeats = m.createArrayNode();
+            for(Seat s : seats){
+                ObjectNode o = m.createObjectNode();
+                o.put("row", s.getRow());
+                o.put("seat", s.getSeatNumber());
+                jsonSeats.add(o);
+            }
+
+            ObjectNode seatInfo = m.createObjectNode();
+            seatInfo.put("seats", jsonSeats);
+
+            return seatInfo;
+        }
+        catch(Exception ex){
+            return null;
+        }
+    }
+
     public ObjectNode getSeatsByViewing(Integer viewingId){
         try {
             Viewing viewing = viewingRepository.findViewingByViewing(viewingId);
