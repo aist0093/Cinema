@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 
 @Service
@@ -51,6 +53,15 @@ public class BookingService {
             System.out.println("Failed");
         }
         return null;
+    }
+
+    public List<BookingDTO> getBookings(String email){
+        List<Booking> bookings = bookingRepository.findBookingsByEmail(email);
+        ArrayList<BookingDTO> bookingDTOs = new ArrayList<>();
+        for(Booking b : bookings){
+            bookingDTOs.add(new BookingDTO(b));
+        }
+        return bookingDTOs;
     }
 
     @Transactional

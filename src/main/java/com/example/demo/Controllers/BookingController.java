@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins="*")
 public class BookingController {
@@ -24,6 +26,11 @@ public class BookingController {
     @DeleteMapping("/booking/{bookingId}")
     public void deleteOneBooking(@RequestParam String email, @PathVariable int bookingId) {
         bookingService.deleteBooking(email, bookingId);
+    }
+
+    @GetMapping("/bookings")
+    public List<BookingDTO> getBookins(@RequestParam String email){
+        return bookingService.getBookings(email);
     }
 
     //create a booking
