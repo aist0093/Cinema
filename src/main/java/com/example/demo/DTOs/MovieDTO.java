@@ -19,6 +19,7 @@ public class MovieDTO {
     String ageRequirement;
     String actors;
     String poster;
+    String rating;
 
     public MovieDTO(Movie m){
         this.title = m.getTitle();
@@ -27,5 +28,7 @@ public class MovieDTO {
         this.ageRequirement = String.valueOf(m.getAgeRequirement());
         this.actors = m.getActors();
         this.poster = m.getImage();
+        this.rating = m.getRate();
+
     }
 }
